@@ -96,11 +96,34 @@
 ## **6) Tipos de Computação em Nuvem:**
 
 ### **6.1) Modelos de Implantação:**
-* Nuvem pública: Disponíveis ao público e de propriedade de provedores de serviços de nuvem
-* Nuvem privada: Operada exclusivamente por uma única organização
-* Nuvem híbrida: Combinação de pública e privada
+* **Nuvem pública:** 
+    - Disponíveis ao público e de propriedade de provedores de serviços de nuvem
+    - Serviços acessados pela internet
+    - AWS, Microsoft Azure
+* **Nuvem privada:**
+    - Operada exclusivamente por uma única organização
+    - Serviços e infraestrutura mantidos em rede privada
+    - AWS e VMware
+* **Nuvem híbrida:** 
+    - Combinação de pública e privada
+    - P&D na privada, compartilhamento com parceiros na pública
 
 
 ### **6.2) Modelos de Serviço:**
-* Infraestrutura como serviço: Empresa que requer recursos como armazenamento ou VMs
-* Plataforma como serviço: Empresa que requer 
+* **Infraestrutura como serviço (IaaS):**
+    - Empresa que requer recursos como armazenamento ou VMs
+    - Aluga infraestrutura de TI (servidores, redes, armazenamento), escalável
+    - Opção segura e barata 
+    - AWS Elastic Compute Cloud, Google Compute Engine
+* **Plataforma como serviço (PaaS):** 
+    - Permite todos os conceitos básicos de IaaS
+    - Empresa que requer plataforma para **criar software**
+    - Fornece plataforma como ferramenta para testar, desenvolver e hospedar aplicativos em um mesmo ambiente
+    - AWS Elastic Beanstalk, Windows Azure
+* **Software como serviço (SaaS):**
+    - Empresa que não quer gerenciar nem hardware nem software
+    - Provedores hospedam e gerenciam o aplicativo por assinatura
+    - Aplicativo é executado de maneira uniforme e confiável
+    - "Você paga pela tranquilidade"
+    - Google Apps, Dropbox, DocuSign, Slack
+

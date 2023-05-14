@@ -2,7 +2,7 @@
 
 **Henrique Alves de Fernando - 16/05/2023**
 
-# Aula 1 - Introdução a C#
+# **Aula 1 - Introdução a C#**
 
 ## **1) Origem do C#:**
 * **Linguagem de máquina:**
