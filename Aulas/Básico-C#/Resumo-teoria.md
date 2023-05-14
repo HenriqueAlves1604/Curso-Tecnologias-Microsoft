@@ -103,7 +103,7 @@
     - NuGet: Package Manager do .NET:
         + Instalando pacotes com o CLI: `dotnet new --install <NUGET_ID>`
         + Referenciando pacotes no projeto com o CLI: `dotnet add package <PACK_NAME>`
-    - Documentação com as classes do BCL: https://docs.microsoft.com/en-us/dotnet/api/?view=net-6.0
+    - [Documentação com as classes do BCL](https://docs.microsoft.com/en-us/dotnet/api/?view=net-6.0)
     
 
 ## **3) Programação estruturada:**
