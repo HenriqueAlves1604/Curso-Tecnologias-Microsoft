@@ -15,24 +15,38 @@
 
 ## **2) Serviços do Azure:**
 
-### **2.1) Computação:**
-<img src="C:\Users\henri\OneDrive\Documentos\Unicamp\Ciência da Computação\1º Semestre\Curso msft\Aulas\Introdução à Computação em Nuvem\Imagens\Computacao.png" alt="Descrição da imagem">
+### **2.1) Computação**
 
+### **2.2) Rede**
 
-### **2.2) Rede:**
+### **2.3) Armazenamento**
 
-### **2.3) Armazenamento:**
+### **2.4) Móvel**
 
-### **2.4) Móvel:**
+### **2.5) Banco de Dados**
 
-### **2.5) Banco de Dados:**
+### **2.6) Web**
 
-### **2.6) Web:**
+### **2.7) IeT**
 
-### **2.7) IeT:**
+### **2.8) Big Data**
 
-### **2.8) Big Data:**
+### **2.9) IA**
 
-### **2.9) IA:**
+### **2.10) DevOps**
 
-### **2.10) DevOps:**
+## **3) Segurança:**
+
+### **3.1) Operações**
+
+### **3.2) Aplicativos**
+
+### **3.3) Armazenamento**
+
+### **3.4) Rede**
+
+### **3.5) Computação**
+
+### **3.6) Identidade**
+
+slide 119

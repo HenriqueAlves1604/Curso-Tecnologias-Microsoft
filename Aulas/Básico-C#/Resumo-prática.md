@@ -1,4 +1,8 @@
-# **Prática - Básico C#**
+**Curso Tecnologias Microsoft**
+
+**Henrique Alves de Fernando - 15/05/2023**
+
+# **Prática - Comandos Básicos C#**
 ## **1) Criando um projeto:**
 * Necessário criar um **solution** e associar pelo menos um **projeto** a ela. 
 * Podemos usar o [CLI do dotnet](https://learn.microsoft.com/en-us/dotnet/core/tools/) ou diretamente pelo VS-Code
@@ -147,3 +151,41 @@ char[] firstTwo2 = vowels[firstTwoRange];   // 'a', 'e'
     };
     ```
 ## **3) Operadores e Expressões:**
+### **3.1) Operador null:**
+
+* Tipo por referência
+* Não estão apontando para um objeto válido
+* Operador `??` -> null-coalescing; `a ?? b` retorna `a` se não for nulo ou `b`, caso contrário
+* Operador `??=` -> `a ??= b` se `a` é null, substitui seu valor por `b` e mantém o valor de `a`, caso contrário
+
+### **4.1) Definição de Variáveis:**
+* Variáveis de mesmo tipo podem ser declaradas na mesma linha, desde que separadas por vírgula
+* Constantes são declaradas com `const`. Não podem ser alteradas
+* Omitir o tipo e C# faz a inferência durante a compilação: `var`
+
+## **5) Laços de Controle de Fluxo e de Repetição:**
+
+### **5.1) If, else:**
+* Comando de fluxo
+* Não é necessário definir o escopo com {} quando há apenas um comando
+
+### **5.2) Switch:**
+* Mais claro e simples que múltiplos *if*
+* Quando a avaliação de mais de um valor leva à mesma execução, é possível listar vários *cases* sequencialmente
+
+### **5.3) While, do:**
+* *while* avalia a expressão antes do corpo do laço
+* *do{} while()* avalia depois
+
+### **5.4) For, foreach:**
+* *for* é igual a java
+* É possível adicionar mais de de uma variável na inicialização do laço
+* *foreach* itera sobre elementos enumeráveis
+```
+foreach(char c in "beer")   // c é a variável de iteração
+  Console.WriteLine(c);
+```
+
+### **5.5) Break, continue:**
+* `break;` quebra o laço *for, while, switch*
+* `continue;` faz o laço *for, while, switch* começar a próxima iteração
