@@ -180,3 +180,36 @@ class Program
   }
 }
 ```
+
+## **2) O Tipo Object:**
+* Classe base para todos os outros tipos
+* ***Boxing*** é a operação de converter um tipo de dado para o tipo mais ancestral. ***Unboxing*** é o processo reverso. Estamos usando polimorfismo
+```
+int x = 9;
+object obj = x;           // Box para int
+int y = (int)obj;         // Unbox para int
+
+Console.WriteLine(y);     // 9
+```
+* Quando fazemos *unboxing*, os tipos devem combinar
+```
+object obj = 9;           // 9 é inferido como tipo int
+long x = (long) obj;      // InvalidCastException
+```
+
+```
+object obj = 9;
+
+// Unbox para int, com conversão implícita para long
+long x = (int) obj;
+Console.WriteLine(x);     // 9
+
+// Também pode ser escrito assim:
+object obj2 = 3.5;              // 3.5 é inferido como sendo do tipo double
+int y = (int)(double) obj2;    // x agora vale 3
+Console.WriteLine(y);     // 3
+```
+
+* Formas de se obter o tipo do objeto:
+    - método `GetType`
+    - operador `typeof`
