@@ -213,3 +213,128 @@ Console.WriteLine(y);     // 3
 * Formas de se obter o tipo do objeto:
     - método `GetType`
     - operador `typeof`
+
+## **3) Herança:**
+* Alterar o comportamento de uma classe já existente
+* Evita repetição de código 
+```
+public class Asset           // Classe mãe
+{
+  public string Name;
+}
+
+public class Stock : Asset   // Classe filha que herda de Asset
+{
+  public long SharesOwned;
+}
+
+public class House : Asset   // Classe filha que herda de Asset
+{
+  public decimal Mortgage;
+}
+```
+
+* Permite usar o conceito de polimorfismo: Podemos escrever operações para a classe mãe e usá-los em classes filhas
+```
+Display(new Stock { Name="MSFT", SharesOwned=1000 });     // MSFT
+Display(new House { Name="Mansion", Mortgage=100000 });   // Mansion
+
+void Display(Asset asset)   // Uso de polimorfismo, isto é, tanto Stock como House são Assets
+{
+  Console.WriteLine(asset.Name);
+}
+```
+* **Conversões de referência:**
+    - Upcast: Tipo filho vira tipo mãe
+    - Downcast: Tipo mãe para tipo filho
+  
+  
+```
+Stock msft = new Stock();     // Tipo filho
+Asset a = msft;               // Upcast para o tipo mãe
+
+// Após o upcast, as duas variáveis ainda referenciam o mesmo objeto
+Console.WriteLine(a == msft);  // True
+```
+
+```
+Stock msft = new Stock();
+Asset a = msft;                      // Upcast para o tipo mãe
+
+Stock s = (Stock)a;                  // Downcast para tipo filho com conversão explícita
+
+Console.WriteLine(s.SharesOwned); 
+Console.WriteLine(s == a);          // True
+Console.WriteLine(s == msft);       // True
+
+House h = new House();
+Asset a2 = h;               // Upcast sempre funciona
+Stock s2 = (Stock)a2;       // ERROR: Downcast falhou: a não é uma Stock
+```
+
+* Operador `is` testa uma conversão de referência. Similar a `instanceof`
+* Operador `as` realiza conversão para um tipo mais especializado
+```
+Asset a = new Asset();
+Stock s = a as Stock;       // s é nulo; nenhuma exceção é lançada
+// O operador as é similar ao operador is: 
+// expression is type ? (type)expression : (type)null
+```
+
+* **Sobrescrita:**
+    - Métodos não podem ser **sobrescritos** nas classes filhas. 
+    - Podemos permitir a sobrescrita usando a palavra-chave `virtual` na classe mãe e `override` na classe filha. 
+    - Essas palavras vêm logo depois da visibilidade. 
+    - O tipo de retorno deve ser igual ou mais específico que do método original
+    - Um método sobrescrito pode usar a palavra-chave `sealed` paraa selar sua implementação e impedir a sobrescrita por outras classes herdeiras
+```
+House mansion = new House { Name="McMansion", Mortgage=250000 };
+
+Console.WriteLine(mansion.Liability);      // 250000
+
+public class Asset
+{
+  public string Name;
+  public virtual decimal Liability => 0;    // Método virtual
+}
+
+public class House : Asset
+{
+  public decimal Mortgage;
+  public sealed override decimal Liability => Mortgage;   // Método sobrescrito e selado
+}
+
+// Podemos também selar uma classe inteira, implicitamente selando todos os seus métodos virtuais
+public sealed class Stock : Asset { /* ... */ }
+```
+
+  
+* **Classes abstratas** nunca podem ser instanciadas e devem conter somente membros abstratos
+
+* Operador `base`: chama o construtor da classe mãe (se não for explicitamente chamado, é chamado de maneira implícita)
+
+```
+new Subclass (123);
+
+public class Baseclass                      // Classe mãe
+{
+  public int X;
+  public Baseclass() { }                    // Construtor da classe mãe
+  public Baseclass(int x) { this.X = x; }   // Construtor da classe mãe
+}
+
+public class Subclass : Baseclass           // Classe filha
+{
+  public Subclass(int x) : base(x) { }      // Construtor da classe filha, note que o construtor da classe mãe foi chamado com o operador base
+}
+```
+
+## **4) Modificadores de Acesso:**
+* Implementam o encapsulamento
+* Evitam que o objeto externe dados, operações e responsabilidades que não deveriam ser expostos
+* `public`
+* `private`
+* `protected`: Acesso permitido na mesma classe e em classes filhas
+* `internal`: Acesso permitido a qualquer código no messmo *Assembly* (mesma biblioteca). É o modificador padrão (quando nenhum é explicitado)
+
+## **5) Interfaces:**
