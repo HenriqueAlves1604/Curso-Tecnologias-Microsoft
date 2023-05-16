@@ -338,3 +338,141 @@ public class Subclass : Baseclass           // Classe filha
 * `internal`: Acesso permitido a qualquer código no messmo *Assembly* (mesma biblioteca). É o modificador padrão (quando nenhum é explicitado)
 
 ## **5) Interfaces:**
+* Estrutura para padronizar o modo de comunicação com um objeto
+* Especifica conjunto de métodos que caracterizam um modo de interação com um objeto que a implementa
+* Um objeto implementa a interface quando sua classe possui todos os métodos definidos na interface
+* Parece com uma classe abstrata sem fields
+* Solução para o problema da herança múltipla, pois uma classe pode implementar várias interfaces
+* Mecanismo de herança semelhante
+```
+IEnumerator e = new Countdown();    // Uso de polimorfismo 
+
+while (e.MoveNext())
+  Console.Write(e.Current);         // 109876543210
+
+public interface IEnumerator        // Declaração de uma interface com métodos prototipados
+{
+  bool MoveNext();
+  object Current { get; }
+  void Reset();
+}
+
+class Countdown : IEnumerator       // Implementação de interface e seus métodos por uma classe
+{
+  int count = 11;
+  public bool MoveNext () => count-- > 0;
+  public object Current   => count;
+  public void Reset()     { throw new NotSupportedException(); }
+}
+```
+* Diferentes classes podem implementar a mesma interface de diferentes maneiras
+* Para resolver problema de colisão de assinaturas, deve-se fazer a implementação explícita da interface 
+```
+Widget w = new Widget();
+w.Foo();                        // Widget's implementation of I1.Foo
+((I1)w).Foo();                  // Widget's implementation of I1.Foo
+((I2)w).Foo();                  // Widget's implementation of I2.Foo
+
+interface I1 { void Foo(); }
+interface I2 { int Foo(); }
+
+public class Widget : I1, I2    // Implementação de múltiplas interfaces
+{
+  public void Foo ()
+  {
+    Console.WriteLine("Widget's implementation of I1.Foo");
+  }
+  
+  int I2.Foo()                  // Implementação explicita de método da interface
+  {
+    Console.WriteLine("Widget's implementation of I2.Foo");
+    return 42;
+  }
+}
+```
+* Métodos implicitamente selados. Devem ser marcados como `virtual` para serem implementados nas classes filhas
+* Reimplementação de interface em classe filha pode gerar problemas. Boa prática: fazer a conversão do objeto para o tipo que implementa a interface que se deseja chamar.
+* Interfaces podem conter uma implementação padrão. Nesse caso, não é necessáario reimplementar o método na classe do objeto
+* Permitem o uso de propriedade estática
+
+## **6) Enums:**
+* Permitem a especificação de constantes numéricas nomeadas
+```
+BorderSide topSide = BorderSide.Top;
+bool isTop = (topSide == BorderSide.Top);  
+
+Console.WriteLine(isTop);       // True
+
+// Definição de um enum com quatro constantes
+public enum BorderSide { Left, Right, Top, Bottom }
+
+// Podemos especificar um tipo alternativo de dado
+public enum BorderSideByte : byte { Left, Right, Top, Bottom }
+
+// Também podemos especificar valores explícitos para cada constante
+public enum BorderSideExplicit : byte { Left=1, Right=2, Top=10, Bottom=11 }
+
+public enum BorderSidePartiallyExplicit : byte { Left=1, Right, Top=10, Bottom }
+```
+* É possível converter instâncias de enum para seu tipo integral e vice-versa
+
+```
+int i = (int)BorderSide.Left;
+Console.WriteLine(i);                   // 0
+
+BorderSide side = (BorderSide)i;
+Console.WriteLine(side);                // Left
+
+bool leftOrRight = (int)side <= 2;
+Console.WriteLine(leftOrRight);         // True
+
+HorizontalAlignment h = (HorizontalAlignment)BorderSide.Right;
+Console.WriteLine(h);                   // Right
+
+BorderSide b = 0; 
+Console.WriteLine(b);                   // Left
+
+public enum BorderSide { Left, Right, Top, Bottom }
+
+public enum HorizontalAlignment
+{
+  Left = BorderSide.Left,
+  Right = BorderSide.Right,
+  Center
+}
+```
+## **7) Struct:**
+* Classe sem métodos
+* tipo por valor, não por referência
+
+```
+Point p1 = new Point();       // p1.x e p1.y serão 1
+Point p2 = new Point(2, 2);   // p2.x e p2.y serão 2
+
+Console.WriteLine(p1);
+Console.WriteLine(p2);
+
+struct Point                  // Declaração de uma struct
+{
+  public int x, y;
+  public Point()             { this.x = 1; this.y = 1; }
+  public Point(int x, int y) { this.x = x; this.y = y; }
+}
+```
+
+## **8) Tipos Aninhados:**
+* Declarado dentro do escopo de outro tipo
+* Devem respeitar modificadores de visibilidade
+
+```
+public class TopLevel
+{
+  public class Nested { }               // Classe aninhada
+  public enum Color { Red, Blue, Tan }  // Enum aninhado
+}
+
+static void Main()
+{
+  TopLevel.Color color = TopLevel.Color.Red;  
+}
+```
