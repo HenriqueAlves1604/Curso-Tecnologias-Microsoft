@@ -2,12 +2,15 @@ namespace JewelCollector;
 
 public class Obstacle
 {
-    private string tipo {get; set;}
-    private Tuple<int, int> posicao {get; set;}
+    private string type {get; set;}
+    private int xPosition {get; set;}
+    private int yPosition {get; set;}
 
-    Obstacle(string tipo, Tuple<int, int> posicao){
-        this.tipo = tipo;
-        this.posicao = posicao;
+    //Constructor:
+    Obstacle(string type, int xPosition, int yPosition){
+        this.type = type;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
     }
 
 }

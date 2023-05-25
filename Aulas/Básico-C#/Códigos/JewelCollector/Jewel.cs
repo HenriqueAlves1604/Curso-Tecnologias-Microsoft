@@ -1,30 +1,32 @@
 namespace JewelCollector;
 
 public class Jewel {
-    private string tipo {get; set;}
-    private Tuple<int, int> posicao {get; set;}
-    private int valor {get; set;}
+    private string type {get; set;}
+    private int xPosition {get; set;}
+    private int yPosition {get; set;}
+    private int value {get; set;}
 
     //Construtor:
-    public Jewel(string tipo, Tuple<int, int> posicao){
-        this.tipo = tipo;
-        this.posicao = posicao;
-        switch(tipo){
+    public Jewel(string type, int xPosition, int yPosition){
+        this.type = type;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        switch(type){
             case "Red":
-                this.valor = 100;
+                this.value = 100;
                 break;
             case "Green":
-                this.valor = 50;
+                this.value = 50;
                 break;
             case "Blue":
-                this.valor = 10;
+                this.value = 10;
                 break;
             default:
                 break;
         }
     }
 
-    
+
 
 
 
