@@ -6,10 +6,10 @@ public class Robot {
     private int yPosition {get; set;}
 
     //Constructor:
-    Robot(int xPosition, int yPosition){
+    Robot(){
         this.bag = new List<int>();
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+        this.xPosition = 0;
+        this.yPosition = 0;
     }
 
     //Method that moves the robot one unit up:
