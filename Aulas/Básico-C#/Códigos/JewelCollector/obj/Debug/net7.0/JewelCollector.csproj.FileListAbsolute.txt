@@ -1,0 +1,5 @@
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.csproj.AssemblyReference.cache
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.AssemblyInfoInputs.cache
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.AssemblyInfo.cs
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.csproj.CoreCompileInputs.cache
