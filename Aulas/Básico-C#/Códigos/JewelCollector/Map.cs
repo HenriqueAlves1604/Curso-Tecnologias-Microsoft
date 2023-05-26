@@ -10,7 +10,7 @@ public class Map {
     Map(){
         for(int i = 0; i < MAP_ROWS; i++){
             for(int j = 0; j < MAP_COLS; j++){
-                map[i, j] = "--";
+                map[i][j] = "--";
             }
         }
     }
@@ -20,7 +20,7 @@ public class Map {
         for(int i = 0; i < MAP_ROWS; i++){
             Console.Write("\n");
             for(int j = 0; j < MAP_COLS; j++){
-                Console.Write(map[i, j] + "  ");
+                Console.Write(map[i] [j] + "  ");
             }
         }
     }
@@ -29,30 +29,30 @@ public class Map {
     public void addJewel(string type, int xPosition, int yPosition){
         switch(type){
             case "Red":
-                map[yPosition, xPosition] = "JR";
+                map[yPosition][xPosition] = "JR";
                 return;
             case "Green":
-                map[yPosition, xPosition] = "JG";
+                map[yPosition][xPosition] = "JG";
                 return;
             case "Blue":
-                map[yPosition, xPosition] = "JB";
+                map[yPosition][xPosition] = "JB";
                 return;
         }
     }
 
     //Method that removes a jewel from the map:
     public void removeJewel(int xPosition, int yPosition){
-        map[yPosition, xPosition] = "--";
+        map[yPosition][xPosition] = "--";
     }
 
     //Method that adds an obstacle on the map:
-    public void addObstacle(int xPosition, int yPosition){
+    public void addObstacle(string type, int xPosition, int yPosition){
         switch(type){
             case "Water":
-                map[yPosition, xPosition] = "##";
+                map[yPosition][xPosition] = "##";
                 break;
             case "Tree":
-                map[yPosition, xPosition] = "$$";
+                map[yPosition][xPosition] = "$$";
                 break;
         }
     }

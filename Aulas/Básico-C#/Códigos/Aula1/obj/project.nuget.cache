@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "W43Mo8bBMSlRsflW8OUBQYPwysooUQUtIj1Xh7PPblcZfQtz39TlK3cVjp5k4rc5TKcPSXD+UEWm+A0wjjID5w==",
+  "dgSpecHash": "TImMxfxE73TBsijJ5K546C2SEgLA8q5ZZoHS9W4FyAi2RHQtoBcx79ai1hDtwqvbRVhNsE+Zc0wxmdxAWK1fCQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\henri\\OneDrive\\Documentos\\Unicamp\\Ciência da Computação\\1º Semestre\\Curso msft\\Aulas\\Básico-C#\\Códigos\\Aula1\\Aula1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\msft35\\Documents\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\Aula1\\Aula1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\msft35\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.13\\microsoft.netcore.app.ref.6.0.13.nupkg.sha512",
+    "C:\\Users\\msft35\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.13\\microsoft.windowsdesktop.app.ref.6.0.13.nupkg.sha512",
+    "C:\\Users\\msft35\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.13\\microsoft.aspnetcore.app.ref.6.0.13.nupkg.sha512",
+    "C:\\Users\\msft35\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.13\\microsoft.netcore.app.host.win-x64.6.0.13.nupkg.sha512"
+  ],
   "logs": []
 }

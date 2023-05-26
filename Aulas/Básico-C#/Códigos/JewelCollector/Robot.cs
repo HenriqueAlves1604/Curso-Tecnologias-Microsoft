@@ -1,15 +1,17 @@
 namespace JewelCollector;
 
 public class Robot {
-    private List<int> bag {get; set;}
+    private List<Jewel> bag {get; set;}
     private int xPosition {get; set;}
     private int yPosition {get; set;}
+    private Map map {get; set;}
 
     //Constructor:
-    Robot(){
-        this.bag = new List<int>();
+    Robot(Map map){
+        this.bag = new List<Jewel>();
         this.xPosition = 0;
         this.yPosition = 0;
+        this.map = map;
     }
 
     //Method that moves the robot one unit up:
@@ -39,28 +41,14 @@ public class Robot {
 
     //Method that prints on the console the amount of jewels collected:
     public void jewelsCollected(){
-        int red = 0, green = 0, blue = 0;
-        for(int i = 0; i < bag.legth; i++){
-            switch(bag[i].type){
-                case "Red":
-                    red += 1;
-                    break;
-                case "Green":
-                    green += 1;
-                    break;
-                case "Blue":
-                    blue += 1;
-                    break;
-            }
-        }
-        Console.WriteLine("Bag total items: " + bag.length);
+        Console.WriteLine("Bag total items: " + bag.Count);
     }
 
     //Method that prints on the console the total number of points:
     public void totalPoints(){
         int points = 0;
-        for(int i = 0; i < bag.length; i++){
-            points += bag[i].value;
+        for(int i = 0; i < bag.Count; i++){
+            points += bag[i].value();
         }
         Console.WriteLine("Bag total value: " + points);
     }
