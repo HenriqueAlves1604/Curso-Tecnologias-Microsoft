@@ -1,27 +1,58 @@
 ﻿public class JewelCollector {
 
-  public static void Main() {
+    public static void Main() {
+        bool running = true;
+        Map map = new Map();
+        Robot robot = new Robot();
+
+        //Adding jewels on the map:
+        map.addJewel("Red", 1, 9);
+        map.addJewel("Red", 8, 8);
+        map.addJewel("Green", 9, 1);
+        map.addJewel("Green", 7, 6);
+        map.addJewel("Blue", 3, 4);
+        map.addJewel("Blue", 2, 1);
+
+        //Adding obstacles on the map:
+        for(int i = 0; i < 7; i++){
+            map.addObstacle("Water", 5, i);
+        }
+        map.addObstacle("Tree", 5, 9);
+        map.addObstacle("Tree", 3, 9);
+        map.addObstacle("Tree", 8, 3);
+        map.addObstacle("Tree", 2, 5);
+        map.addObstacle("Tree", 1, 4);
   
-      bool running = true;
-  
-      do {
-  
-          Console.WriteLine("Enter the command: ");
-          string command = Console.ReadLine();
-  
-          if (command.Equals("quit")) {
-              running = false;
-          } else if (command.Equals("w")) {
-              
-          } else if (command.Equals("a")) {
-              
-          } else if (command.Equals("s")) {
+    
+        do {
+            map.printMap();
+            Console.WriteLine("Enter the command: ");
+            string command = Console.ReadKey();
             
-          } else if (command.Equals("d")) {
-          
-          } else if (command.Equals("g")) {
-              
-          }
-      } while (running);
-  }
+            switch(command){
+                case 'w':
+                    robot.moveUp();
+                    break;
+                case 'a':
+                    robot.moveLeft();
+                    break;
+                case 's':
+                    robot.moveDown();
+                    break;
+                case 'd':
+                    robot.moveRight();
+                    break;
+                case 'g':
+                    robot.collectJewel();
+                    break;
+                case 'q':
+                    running = false;
+                    break;
+            }
+            
+            robot.jewelsCollected();
+            Console.Write(" | ");
+            robot.totalPoints();
+        } while (running);
+    }
 }

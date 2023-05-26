@@ -46,7 +46,7 @@ public class Map {
     }
 
     //Method that adds an obstacle on the map:
-    public void removeObstacle(int xPosition, int yPosition){
+    public void addObstacle(int xPosition, int yPosition){
         switch(type){
             case "Water":
                 map[yPosition, xPosition] = "##";

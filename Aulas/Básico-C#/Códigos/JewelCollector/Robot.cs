@@ -53,9 +53,7 @@ public class Robot {
                     break;
             }
         }
-        Console.WriteLine("Red jewels: " + red);
-        Console.WriteLine("Green jewels: " + green);
-        Console.WriteLine("Blue jewels: " + blue);
+        Console.WriteLine("Bag total items: " + bag.length);
     }
 
     //Method that prints on the console the total number of points:
@@ -64,6 +62,6 @@ public class Robot {
         for(int i = 0; i < bag.length; i++){
             points += bag[i].value;
         }
-        Console.WriteLine("Points: " + points);
+        Console.WriteLine("Bag total value: " + points);
     }
 }
