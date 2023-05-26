@@ -3,7 +3,7 @@ public class AppMain {
 
     public static void Main() {
         bool running = true;
-        Map map = new Map();
+        Map map = new Map(10,10);
         Robot robot = new Robot(map);
 
         //Adding jewels on the map:
@@ -28,7 +28,8 @@ public class AppMain {
         do {
             map.printMap();
             Console.WriteLine("Enter the command: ");
-            char command = Console.ReadKey();
+            ConsoleKeyInfo pressedKey = Console.ReadKey();
+            char command = pressedKey.KeyChar;
             
             switch(command){
                 case 'w':

@@ -1,20 +1,41 @@
 namespace JewelCollector;
 
 public class Map {
-    private readonly int MAP_ROWS = 10;
-    private readonly int MAP_COLS = 10;
+    private readonly int MAP_ROWS;
+    private readonly int MAP_COLS;
 
     private string[][] map {get; set;}
 
     //Constructor:
-    Map(){
+    public Map(int rows, int cols){
+        this.MAP_ROWS = rows;
+        this.MAP_COLS = cols;
+        map = new string[MAP_ROWS][];
         for(int i = 0; i < MAP_ROWS; i++){
+            map[i] = new string[MAP_COLS];
             for(int j = 0; j < MAP_COLS; j++){
-                map[i][j] = "--";
+                this.map[i][j] = "--";
             }
         }
     }
 
+    //Gets and Sets:
+    public int getMAP_ROWS() {
+        return this.MAP_ROWS;
+    }
+    public int getMAP_COLS() {
+        return this.MAP_COLS;
+    }
+
+    public string[][] getMap() {
+        return this.map;
+    }
+
+    public void setMap(string[][] map){
+        this.map = map;
+    }
+
+    //Mathods:
     //Method that prints the map on the console:
     public void printMap(){
         for(int i = 0; i < MAP_ROWS; i++){

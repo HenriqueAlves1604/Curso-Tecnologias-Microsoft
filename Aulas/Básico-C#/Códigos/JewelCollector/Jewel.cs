@@ -1,13 +1,13 @@
 namespace JewelCollector;
 
-public class Jewel {
-    private string type {get; set;}
-    private int xPosition {get; set;}
-    private int yPosition {get; set;}
-    private int value {get; set;}
+public class Jewel : Item{
+    private string type;
+    private int xPosition;
+    private int yPosition;
+    private int value;
 
-    //Construtor:
-    public Jewel(string type, int xPosition, int yPosition){
+    //Constructor:
+    public Jewel(string type, int xPosition, int yPosition) : base("J" + type[0]) {
         this.type = type;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
@@ -26,11 +26,39 @@ public class Jewel {
         }
     }
 
+    //Gets and sets:
 
+    public string getType() {
+        return this.type;
+    }
 
+    public void setType(string type){
+        this.type = type;
+    }
 
+    public int getXPosition() {
+        return this.xPosition;
+    }
 
+    public void setXPosition(int yPosition){
+        this.yPosition = yPosition;
+    }
 
+    public int getYPosition() {
+        return this.xPosition;
+    }
+
+    public void setYPosition(int yPosition){
+        this.yPosition = yPosition;
+    }
+
+    public int getValue() {
+        return this.value;
+    }
+
+    public void setValue(int value){
+        this.value = value;
+    }
 
 
 }

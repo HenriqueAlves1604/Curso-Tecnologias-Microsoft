@@ -1,25 +1,16 @@
 namespace JewelCollector;
 
-public class Obstacle {
-    private string type;
+public class Empty : Item {
     private int xPosition;
     private int yPosition;
 
     //Constructor:
-    public Obstacle(string type, int xPosition, int yPosition){
-        this.type = type;
+    public Empty(int xPosition, int yPosition) : base("--"){
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }
 
     //Gets and sets:
-    public string getType() {
-        return this.type;
-    }
-
-    public void setType(string type){
-        this.type = type;
-    }
 
     public int getXPosition() {
         return this.xPosition;

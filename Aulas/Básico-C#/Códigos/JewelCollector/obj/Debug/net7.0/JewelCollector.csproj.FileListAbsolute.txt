@@ -3,3 +3,13 @@ C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\
 C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.AssemblyInfoInputs.cache
 C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.AssemblyInfo.cs
 C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.csproj.CoreCompileInputs.cache
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\bin\Debug\net7.0\JewelCollector.exe
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\bin\Debug\net7.0\JewelCollector.deps.json
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\bin\Debug\net7.0\JewelCollector.runtimeconfig.json
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\bin\Debug\net7.0\JewelCollector.dll
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\bin\Debug\net7.0\JewelCollector.pdb
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.dll
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\refint\JewelCollector.dll
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.pdb
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\JewelCollector.genruntimeconfig.cache
+C:\Users\msft35\Documents\Curso-Tecnologias-Microsoft\Aulas\Básico-C#\Códigos\JewelCollector\obj\Debug\net7.0\ref\JewelCollector.dll
