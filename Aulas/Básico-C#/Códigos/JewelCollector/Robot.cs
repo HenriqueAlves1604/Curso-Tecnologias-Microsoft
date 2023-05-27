@@ -2,8 +2,6 @@ namespace JewelCollector;
 
 public class Robot : Item{
     private List<Item> bag;
-    private int xPosition;
-    private int yPosition;
     private int energy;
 
     //Declarating the events:
@@ -15,10 +13,8 @@ public class Robot : Item{
     
 
     //Constructor:
-    public Robot() : base("ME", true, false) {
+    public Robot() : base(0, 0, "ME", true, false) {
         this.bag = new List<Item>();
-        this.xPosition = 0;
-        this.yPosition = 0;
         this.energy = 3;
     }
 

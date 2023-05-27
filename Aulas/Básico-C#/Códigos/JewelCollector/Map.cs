@@ -155,19 +155,32 @@ public class Map {
         return 1;
     }
 
-    //Method that adds jewels randomly on the map:
-    public void addJewelRandomly(){
+    //Method that adds items randomly on the map:
+    public void fillMap(){
         int blueAmount = (getMAP_COLS() * getMAP_ROWS() * 3) / 100; 
         int greenAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100; 
         int redAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100;
         int waterAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
-        int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 5) / 100; 
-    }
+        int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 5) / 100;
 
-    //Method that adds obstacles randomly on the map:
-    public void addObstaclesRandomly(){
 
     }
+
+    //Method that adds an item randomly on the map:
+    public void addItemRandomly<T>(T item1, int amount) where T : Item{
+        int count = 0;
+        while(count < amount){
+            Random random = new Random();
+            int xPosition = random.Next(0, getMAP_COLS() + 1);
+            int yPosition = random.Next(0, getMAP_ROWS() + 1);
+            if(map[yPosition][xPosition] is Empty){
+                map[yPosition][xPosition] = item1;
+                count++;
+            }
+        }
+    }
+
+
 
     //Methods that deals with the events:
     //Map's update when the robot moves up:

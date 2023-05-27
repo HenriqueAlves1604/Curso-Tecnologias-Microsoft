@@ -4,6 +4,6 @@ public class BlueJewel : Jewel {
     private static readonly int VALUE = 10;
 
     //Constructor:
-    public BlueJewel(int xPosition, int yPosition) : base ("JB", xPosition, yPosition, VALUE) {
+    public BlueJewel(int xPosition, int yPosition) : base ( xPosition, yPosition, "JB", VALUE) {
     }
 }

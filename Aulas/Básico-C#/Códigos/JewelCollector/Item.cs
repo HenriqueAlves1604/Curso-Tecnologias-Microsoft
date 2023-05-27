@@ -1,12 +1,16 @@
 namespace JewelCollector;
 
 public class Item {
-    private string symbol;
-    private bool transpassable;
-    private bool collectable;
+    public int xPosition;
+    public int yPosition;
+    public string symbol;
+    public bool transpassable;
+    public bool collectable;
 
     //Constructor:
-    public Item (string symbol, bool transpassable, bool collectable){
+    public Item (int xPosition, int yPosition, string symbol, bool transpassable, bool collectable){
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
         this.symbol = symbol;
         this.transpassable = transpassable;
         this.collectable = collectable;
@@ -18,6 +22,21 @@ public class Item {
     }
 
     //gets e sets:
+    public int getXPosition() {
+        return this.xPosition;
+    }
+
+    public void setXPosition(int xPosition){
+        this.xPosition = xPosition;
+    }
+
+    public int getYPosition() {
+        return this.yPosition;
+    }
+
+    public void setYPosition(int yPosition){
+        this.yPosition = yPosition;
+    }
     public string getSymbol(){
         return this.symbol;
     }
