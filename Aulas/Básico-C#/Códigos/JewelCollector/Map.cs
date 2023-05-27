@@ -62,7 +62,6 @@ public class Map {
                 map[yPosition][xPosition] = new GreenJewel(xPosition, yPosition);
                 break;
         }
-        
     }
 
     //Method that removes an Item from the map:
@@ -126,7 +125,10 @@ public class Map {
 
     //Method that checks if the game is over. If the player loses, returns -1; if the player wins returns 1; if it's not over, returns 0
     public int checkGameOver(){
-        if(robot.energy == 0)  return -1;
+        if(robot.energy == 0) {
+            Console.WriteLine("NO ENERGY! YOU LOST!");
+            return -1;
+        }
         for(int i = 0; i < MAP_ROWS; i++){
             for(int j = 0; j < MAP_COLS; j++){
                 if(map[i][j] is Jewel){
@@ -134,6 +136,7 @@ public class Map {
                 }
             }
         }
+        Console.WriteLine("YOU WON!\n");
         return 1;
     }
 
@@ -143,18 +146,24 @@ public class Map {
         int greenJAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100; 
         int redJAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100;
         int waterAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
-        int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 10) / 100;
+        int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
 
         addItemRandomly<BlueJewel>(new BlueJewel(0,0), blueJAmount);
         addItemRandomly<GreenJewel>(new GreenJewel(0,0), greenJAmount);
         addItemRandomly<RedJewel>(new RedJewel(0,0), redJAmount);
-        addItemRandomly<Water>(new Water(0,0), blueJAmount);
-        addItemRandomly<Tree>(new Tree(0,0), blueJAmount);
+        addItemRandomly<Water>(new Water(0,0), waterAmount);
+        addItemRandomly<Tree>(new Tree(0,0), treeAmount);
     }
 
     //Method that adds a generic item randomly on the map:
     public void addItemRandomly<T>(T item1, int amount) where T : Item{
         int count = 0;
+        if(item1 is BlueJewel){
+            Random random = new Random();
+            int xPosition = random.Next(0,4);
+            int yPosition = random.Next(0,4);
+            map[yPosition][xPosition] = item1;
+        }
         while(count < amount){
             Random random = new Random();
             int xPosition = random.Next(0, getMAP_COLS());  
@@ -166,8 +175,6 @@ public class Map {
         }
     }
 
-
-
     //Methods that deals with the events:
     //Map's update when the robot moves up:
     private void Robot_MovedUp(object? sender, EventArgs e){
@@ -176,6 +183,7 @@ public class Map {
         try{
             this.addRobot(x, y);
             map[y + 1][x] = new Empty(x, y + 1);
+            robot.energy--;
         }   catch(IndexOutOfRangeException) {
             robot.setYPosition(y + 1);
         }
@@ -188,6 +196,7 @@ public class Map {
         try{
             this.addRobot(x, y);
             map[y - 1][x] = new Empty(x, y - 1);
+            robot.energy--;
         }   catch(IndexOutOfRangeException) {
             robot.setYPosition(y - 1);
         }
@@ -200,6 +209,7 @@ public class Map {
         try{
             this.addRobot(x, y);
             map[y][x - 1] = new Empty(x - 1, y);
+            robot.energy--;
         }   catch(IndexOutOfRangeException) {
             robot.setXPosition(x - 1);
         }
@@ -212,6 +222,7 @@ public class Map {
         try{
             this.addRobot(x, y);
             map[y][x + 1] = new Empty(x + 1, y);
+            robot.energy--;
         }   catch(IndexOutOfRangeException) {
             robot.setXPosition(x + 1);
         }
@@ -221,39 +232,47 @@ public class Map {
     private void Robot_Collected(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        List<Item> newBag = robot.bag;
+        int collected = 0;
 
         try{
             if(map[y][x + 1].getCollectable()){
-                newBag.Add(map[y][x + 1]);
-                robot.bag = newBag;
+                robot.bag.Add(map[y][x + 1]);
                 map[y][x + 1] = new Empty(x + 1, y);
+                collected++;
             }
         }   catch(IndexOutOfRangeException)  {}
 
         try{
             if(map[y][x - 1].getCollectable()){
-                newBag.Add(map[y][x - 1]);
-                robot.bag = newBag;
+                robot.bag.Add(map[y][x - 1]);
                 map[y][x - 1] = new Empty(x - 1, y);
+                collected++;
             }
         }   catch(IndexOutOfRangeException)  {}
 
         try{
             if(map[y + 1][x].getCollectable()){
-                newBag.Add(map[y + 1][x]);
-                robot.bag = newBag;
+                robot.bag.Add(map[y + 1][x]);
                 map[y + 1][x] = new Empty(x, y + 1);
+                collected++;
             }
         }   catch(IndexOutOfRangeException)  {}
 
         try{
             if(map[y - 1][x].getCollectable()){
-                newBag.Add(map[y - 1][x]);
-                robot.bag = newBag;
+                robot.bag.Add(map[y - 1][x]);
                 map[y - 1][x] = new Empty(x, y - 1);
+                collected++;
             }
         }   catch(IndexOutOfRangeException)  {}
-
+        Console.WriteLine("AMT COLLECTED: " + collected);
+        for(int i = robot.bag.Count - collected; i < robot.bag.Count; i++){
+            Console.WriteLine(robot.bag[i]);
+            if(robot.bag[i] is BlueJewel){
+                robot.energy += 5;
+            }   else if(robot.bag[i] is Tree){
+                robot.energy += 3;
+            }
+        }
     }
 }

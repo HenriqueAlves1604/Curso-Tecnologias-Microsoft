@@ -67,7 +67,8 @@ public class AppMain {
 
             string jewels = robot.jewelsCollected();
             string points = robot.totalPoints();
-            Console.WriteLine(jewels + " | " + points + "\n");
+            string energy = "Energy: " + robot.energy;
+            Console.WriteLine(jewels + " | " + points + " | " + energy + "\n");
 
             gameOver = map.checkGameOver();
             if(gameOver == 1){

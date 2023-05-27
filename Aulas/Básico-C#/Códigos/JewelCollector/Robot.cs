@@ -15,7 +15,7 @@ public class Robot : Item{
     //Constructor:
     public Robot() : base(0, 0, "ME", true, false) {
         this.bag = new List<Item>();
-        this.energy = 3;
+        this.energy = 5;
     }
     public Robot(List<Item> bag, int energy) : base(0, 0, "ME", true, false) {
         this.bag = bag;
@@ -76,8 +76,7 @@ public class Robot : Item{
 
     //Method that collects a jewel from the map:
     public void collect(){
-        OnCollect();
-        
+        OnCollect();   
     }
 
     protected virtual void OnCollect(){
