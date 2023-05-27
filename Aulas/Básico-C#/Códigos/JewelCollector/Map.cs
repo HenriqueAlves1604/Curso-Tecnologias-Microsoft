@@ -114,7 +114,7 @@ public class Map {
     private void Robot_MovedRight(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        this.addRobot(x + 1, y);
+        this.addRobot(x, y);
         map[y][x - 1] = new Empty(x - 1, y);
     }
 
@@ -122,7 +122,7 @@ public class Map {
     private void Robot_MovedLeft(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        this.addRobot(x + 1, y);
+        this.addRobot(x, y);
         map[y][x + 1] = new Empty(x + 1, y);
     }
 }
