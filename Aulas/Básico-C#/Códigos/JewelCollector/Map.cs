@@ -69,7 +69,18 @@ public class Map {
 
     //Method that adds a jewel on the map:
     public void addJewel(string type, int xPosition, int yPosition){
-        map[yPosition][xPosition] = new Jewel(type, xPosition, yPosition);
+        switch(type){
+            case "Red":
+                map[yPosition][xPosition] = new RedJewel(xPosition, yPosition);
+                break;
+            case "Blue":
+                map[yPosition][xPosition] = new BlueJewel(xPosition, yPosition);
+                break;
+            case "Green":
+                map[yPosition][xPosition] = new GreenJewel(xPosition, yPosition);
+                break;
+        }
+        
     }
 
     //Method that removes an Item from the map:
@@ -131,6 +142,33 @@ public class Map {
         map[yPosition][xPosition] = robot;
     }
 
+    //Method that checks if the game is over. If the player loses, returns -1; if the player wins returns 1; if it's not over, returns 0
+    public int checkGameOver(){
+        if(robot.getEnergy() == 0)  return -1;
+        for(int i = 0; i < MAP_ROWS; i++){
+            for(int j = 0; j < MAP_COLS; j++){
+                if(map[i][j] is Jewel){
+                    return 0;
+                }
+            }
+        }
+        return 1;
+    }
+
+    //Method that adds jewels randomly on the map:
+    public void addJewelRandomly(){
+        int blueAmount = (getMAP_COLS() * getMAP_ROWS() * 3) / 100; 
+        int greenAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100; 
+        int redAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100;
+        int waterAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
+        int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 5) / 100; 
+    }
+
+    //Method that adds obstacles randomly on the map:
+    public void addObstaclesRandomly(){
+
+    }
+
     //Methods that deals with the events:
     //Map's update when the robot moves up:
     private void Robot_MovedUp(object? sender, EventArgs e){
@@ -144,7 +182,7 @@ public class Map {
         }
     }
 
-    //Map's update when the robot moves down:
+    //Updates the map when the robot moves down:
     private void Robot_MovedDown(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
@@ -156,7 +194,7 @@ public class Map {
         }
     }
 
-    //Map's update when the robot moves right:
+    //Updates the map when the robot moves right:
     private void Robot_MovedRight(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
@@ -168,7 +206,7 @@ public class Map {
         }
     }
 
-    //Map's update when the robot moves left:
+    //Updates the map when the robot moves left:
     private void Robot_MovedLeft(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
@@ -180,7 +218,7 @@ public class Map {
         }
     }
 
-    // Map's update when the robot collects an Item:
+    //Updates the map when the robot collects an Item:
     private void Robot_Collected(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();

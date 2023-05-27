@@ -4,6 +4,7 @@ public class Robot : Item{
     private List<Item> bag;
     private int xPosition;
     private int yPosition;
+    private int energy;
 
     //Declarating the events:
     public event EventHandler? MovedUp;
@@ -18,6 +19,7 @@ public class Robot : Item{
         this.bag = new List<Item>();
         this.xPosition = 0;
         this.yPosition = 0;
+        this.energy = 3;
     }
 
     //Gets and sets:
@@ -43,6 +45,13 @@ public class Robot : Item{
 
     public void setYPosition(int yPosition){
         this.yPosition = yPosition;
+    }
+    public int getEnergy() {
+        return this.energy;
+    }
+
+    public void setEnergy(int energy){
+        this.energy = energy;
     }
 
     

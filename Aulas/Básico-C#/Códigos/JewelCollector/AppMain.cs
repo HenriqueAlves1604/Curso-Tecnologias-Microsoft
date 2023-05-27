@@ -3,8 +3,10 @@ public class AppMain {
 
     public static void Main() {
         bool running = true;
+        int gameOver, rows = 10, cols = 10;
         Robot robot = new Robot();
-        Map map = new Map(10,10, robot);
+        
+        Map map = new Map(rows, cols, robot);
 
         //Adding jewels on the map:
         map.addJewel("Red", 1, 9);
@@ -62,10 +64,19 @@ public class AppMain {
                     running = false;
                     break;
             }
+
             string jewels = robot.jewelsCollected();
             string points = robot.totalPoints();
             Console.WriteLine(jewels + " | " + points + "\n");
-            
-        } while (running);
+
+            gameOver = map.checkGameOver();
+            if(gameOver == 1){
+                rows += 1;
+                cols += 1;
+                gameOver = 0;
+                map = new Map(rows, cols, robot);
+            }
+
+        } while (gameOver != -1 && running);
     }
 }
