@@ -3,8 +3,8 @@ namespace JewelCollector;
 public class Map {
     private readonly int MAP_ROWS;
     private readonly int MAP_COLS;
-
-    private Item[][] map {get; set;}
+    private Item[][] map;
+    private Robot robot;
 
     //Constructor:
     public Map(int rows, int cols){
@@ -17,7 +17,8 @@ public class Map {
                 this.map[i][j] = new Empty(j, i);
             }
         }
-        map[0][0] = new Robot(this);
+        robot = new Robot();
+        this.addRobot(0,0);
     }
 
     //Gets and Sets:
@@ -36,6 +37,18 @@ public class Map {
         this.map = map;
     }
 
+    public Robot getRobot() {
+        return this.robot;
+    }
+
+    public void setRobot(Robot robot) {
+        Console.WriteLine("ROBO ANTES: X = " + getRobot().getXPosition() + ", Y = " + getRobot().getYPosition());
+        this.removeItem(getRobot().getXPosition(),getRobot().getYPosition());
+        this.robot = robot;
+        Console.WriteLine("ROBO DEPOIS: X = " + getRobot().getXPosition() + ", Y = " + getRobot().getYPosition());
+        this.addRobot(getRobot().getXPosition(),getRobot().getYPosition());
+    }
+
     //Mathods:
     //Method that prints the map on the console:
     public void printMap(){
@@ -52,8 +65,8 @@ public class Map {
         map[yPosition][xPosition] = new Jewel(type, xPosition, yPosition);
     }
 
-    //Method that removes a jewel from the map:
-    public void removeJewel(int xPosition, int yPosition){
+    //Method that removes an Item from the map:
+    public void removeItem(int xPosition, int yPosition){
         map[yPosition][xPosition] = new Empty(xPosition, yPosition);
     }
 
@@ -67,5 +80,10 @@ public class Map {
                 map[yPosition][xPosition] = new Tree(xPosition, yPosition);
                 break;
         }
+    }
+
+    //Method that adds the robot to the map:
+    public void addRobot(int xPosition, int yPosition){
+        map[yPosition][xPosition] = robot;
     }
 }

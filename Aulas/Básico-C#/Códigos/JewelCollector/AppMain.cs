@@ -4,7 +4,6 @@ public class AppMain {
     public static void Main() {
         bool running = true;
         Map map = new Map(10,10);
-        Robot robot = new Robot(map);
 
         //Adding jewels on the map:
         map.addJewel("Red", 1, 9);
@@ -27,34 +26,34 @@ public class AppMain {
     
         do {
             map.printMap();
-            Console.WriteLine("Enter the command: ");
+            Console.Write("Enter the command: ");
             ConsoleKeyInfo pressedKey = Console.ReadKey();
+            Console.WriteLine("");
             char command = pressedKey.KeyChar;
             
             switch(command){
                 case 'w':
-                    robot.moveUp();
+                    map.getRobot().moveUp();
                     break;
                 case 'a':
-                    robot.moveLeft();
+                    map.getRobot().moveLeft();
                     break;
                 case 's':
-                    robot.moveDown();
+                    map.getRobot().moveDown();
                     break;
                 case 'd':
-                    robot.moveRight();
+                    map.getRobot().moveRight();
                     break;
                 case 'g':
-                    robot.collectJewel();
+                    map.getRobot().collectJewel();
                     break;
                 case 'q':
                     running = false;
                     break;
-
-                robot.jewelsCollected();
-                Console.Write(" | ");
-                robot.totalPoints();
             }
+            string jewels = map.getRobot().jewelsCollected();
+            string points = map.getRobot().totalPoints();
+            Console.WriteLine(jewels + " | " + points + "\n");
             
         } while (running);
     }

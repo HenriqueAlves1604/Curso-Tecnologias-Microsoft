@@ -4,14 +4,17 @@ public class Robot : Item{
     private List<Jewel> bag;
     private int xPosition;
     private int yPosition;
-    private Map map;
+    public event EventHandler MovedUp;
+    public event EventHandler MovedDown;
+    public event EventHandler MovedRight;
+    public event EventHandler MovedLeft;
+    
 
     //Constructor:
-    public Robot(Map map) : base("ME") {
+    public Robot() : base("ME") {
         this.bag = new List<Jewel>();
         this.xPosition = 0;
         this.yPosition = 0;
-        this.map = map;
     }
 
     //Gets and sets:
@@ -39,34 +42,56 @@ public class Robot : Item{
         this.yPosition = yPosition;
     }
 
-    public Map getMap() {
-        return this.map;
-    }
-
-    public void setMap(Map map){
-        this.map = map;
-    }
     
 
     //Methods:
     //Method that moves the robot one unit up:
     public void moveUp(){
-        this.yPosition += 1;
+        this.yPosition -= 1;
+        OnMovedUp();
+    }
+
+    protected virtual void OnMovedUp(){
+        if(MovedUp != null){
+            MovedUp(this, EventArgs.Empty);
+        }
     }
 
     //Method that moves the robot one unit down:
     public void moveDown(){
-        this.yPosition -= 1;
+        this.yPosition += 1;
+        OnMovedDown();
     }
+
+    protected virtual void OnMovedDown(){
+        if(MovedDown != null){
+            MovedDown(this, EventArgs.Empty);
+        }
+    }
+    
 
     //Method that moves the robot one unit to the right:
     public void moveRight(){
         this.xPosition += 1;
+        OnMovedRight();
     }
 
-    //Method that moves the robot one unit to the right:
+    protected virtual void OnMovedRight(){
+        if(MovedRight != null){
+            MovedRight(this, EventArgs.Empty);
+        }
+    }
+
+    //Method that moves the robot one unit to the left:
     public void moveLeft(){
         this.xPosition -= 1;
+        OnMovedLeft();
+    }
+
+    protected virtual void OnMovedLeft(){
+        if(MovedLeft != null){
+            MovedLeft(this, EventArgs.Empty);
+        }
     }
 
     //Method that collects a jewel from the map:
@@ -74,17 +99,17 @@ public class Robot : Item{
         
     }
 
-    //Method that prints on the console the amount of jewels collected:
-    public void jewelsCollected(){
-        Console.WriteLine("Bag total items: " + bag.Count);
+    //Method that returns the amount of jewels collected:
+    public string jewelsCollected(){
+        return "Bag total items: " + bag.Count;
     }
 
-    //Method that prints on the console the total number of points:
-    public void totalPoints(){
+    //Method that returns the total number of points:
+    public string totalPoints(){
         int points = 0;
         for(int i = 0; i < bag.Count; i++){
             points += bag[i].getValue();
         }
-        Console.WriteLine("Bag total value: " + points);
+        return "Bag total value: " + points;
     }
 }
