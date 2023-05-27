@@ -152,17 +152,29 @@ public class Map {
     private void Robot_Collected(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        if(map[y][x + 1].getCollectable()){
-            map[y][x + 1] = new Empty(x + 1, y);
-        }
-        if(map[y][x - 1].getCollectable()){
-            map[y][x - 1] = new Empty(x - 1, y);
-        }
-        if(map[y + 1][x].getCollectable()){
-            map[y][x] = new Empty(x, y + 1);
-        }
-        if(map[y - 1][x].getCollectable()){
-            map[y - 1][x] = new Empty(x, y - 1);
-        }
+        try{
+            if(map[y][x + 1].getCollectable()){
+                map[y][x + 1] = new Empty(x + 1, y);
+            }
+        }   catch(IndexOutOfRangeException)  {}
+
+        try{
+            if(map[y][x - 1].getCollectable()){
+                map[y][x - 1] = new Empty(x - 1, y);
+            }
+        }   catch(IndexOutOfRangeException)  {}
+
+        try{
+            if(map[y + 1][x].getCollectable()){
+                map[y + 1][x] = new Empty(x, y + 1);
+            }
+        }   catch(IndexOutOfRangeException)  {}
+
+        try{
+            if(map[y - 1][x].getCollectable()){
+                map[y - 1][x] = new Empty(x, y - 1);
+            }
+        }   catch(IndexOutOfRangeException)  {}
+
     }
 }
