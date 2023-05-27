@@ -5,7 +5,7 @@ public class Tree : Item {
     private int yPosition;
 
     //Constructor:
-    public Tree(int xPosition, int yPosition) : base("$$"){
+    public Tree(int xPosition, int yPosition) : base("$$", false, false){
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }

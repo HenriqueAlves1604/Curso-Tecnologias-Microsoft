@@ -31,22 +31,32 @@ public class AppMain {
             ConsoleKeyInfo pressedKey = Console.ReadKey();
             Console.WriteLine("");
             char command = pressedKey.KeyChar;
-            
+            int robotX = robot.getXPosition();
+            int robotY = robot.getYPosition();
+
             switch(command){
                 case 'w':
-                    robot.moveUp();
+                    if(map.moveUpIsValid(robotX, robotY)){
+                        robot.moveUp();
+                    }
                     break;
                 case 'a':
-                    robot.moveLeft();
+                    if(map.moveLeftIsValid(robotX, robotY)){
+                        robot.moveLeft();
+                    }
                     break;
                 case 's':
-                    robot.moveDown();
+                    if(map.moveDownIsValid(robotX, robotY)){
+                        robot.moveDown();
+                    }
                     break;
                 case 'd':
-                    robot.moveRight();
+                    if(map.moveRightIsValid(robotX, robotY)){                
+                        robot.moveRight();
+                    }
                     break;
                 case 'g':
-                    robot.collectJewel();
+                    robot.collect();
                     break;
                 case 'q':
                     running = false;

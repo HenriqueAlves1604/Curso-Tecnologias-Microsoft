@@ -5,7 +5,7 @@ public class Empty : Item {
     private int yPosition;
 
     //Constructor:
-    public Empty(int xPosition, int yPosition) : base("--"){
+    public Empty(int xPosition, int yPosition) : base("--", true, false){
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }

@@ -23,6 +23,7 @@ public class Map {
         robot.MovedDown += Robot_MovedDown;
         robot.MovedRight += Robot_MovedRight;
         robot.MovedLeft += Robot_MovedLeft;
+        robot.Collected += Robot_Collected;
     }
 
     //Gets and Sets:
@@ -88,6 +89,27 @@ public class Map {
         }
     }
 
+    //Methods that check if the movements are valid:
+    public bool moveUpIsValid(int x, int y){
+        bool valid = map[y - 1][x].getTranspassable();
+        return valid;
+    }
+
+    public bool moveDownIsValid(int x, int y){
+        bool valid = map[y + 1][x].getTranspassable();
+        return valid;
+    }
+
+    public bool moveRightIsValid(int x, int y){
+        bool valid = map[y][x + 1].getTranspassable();
+        return valid;
+    }
+
+    public bool moveLeftIsValid(int x, int y){
+        bool valid = map[y][x - 1].getTranspassable();
+        return valid;
+    }
+
     //Method that adds the robot to the map:
     public void addRobot(int xPosition, int yPosition){
         map[yPosition][xPosition] = robot;
@@ -124,5 +146,23 @@ public class Map {
         int y = robot.getYPosition();
         this.addRobot(x, y);
         map[y][x + 1] = new Empty(x + 1, y);
+    }
+
+    // Map's update when the robot collects an Item:
+    private void Robot_Collected(object? sender, EventArgs e){
+        int x = robot.getXPosition();
+        int y = robot.getYPosition();
+        if(map[y][x + 1].getCollectable()){
+            map[y][x + 1] = new Empty(x + 1, y);
+        }
+        if(map[y][x - 1].getCollectable()){
+            map[y][x - 1] = new Empty(x - 1, y);
+        }
+        if(map[y + 1][x].getCollectable()){
+            map[y][x] = new Empty(x, y + 1);
+        }
+        if(map[y - 1][x].getCollectable()){
+            map[y - 1][x] = new Empty(x, y - 1);
+        }
     }
 }

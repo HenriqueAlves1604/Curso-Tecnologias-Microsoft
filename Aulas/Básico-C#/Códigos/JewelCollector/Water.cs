@@ -5,7 +5,7 @@ public class Water : Item {
     private int yPosition;
 
     //Constructor:
-    public Water(int xPosition, int yPosition) : base("##"){
+    public Water(int xPosition, int yPosition) : base("##", false, false){
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }

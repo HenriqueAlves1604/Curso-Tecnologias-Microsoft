@@ -10,10 +10,11 @@ public class Robot : Item{
     public event EventHandler? MovedDown;
     public event EventHandler? MovedRight;
     public event EventHandler? MovedLeft;
+    public event EventHandler? Collected;
     
 
     //Constructor:
-    public Robot() : base("ME") {
+    public Robot() : base("ME", true, false) {
         this.bag = new List<Jewel>();
         this.xPosition = 0;
         this.yPosition = 0;
@@ -103,8 +104,14 @@ public class Robot : Item{
     }
 
     //Method that collects a jewel from the map:
-    public void collectJewel(){
-        
+    public void collect(){
+        OnCollect();
+    }
+
+    protected virtual void OnCollect(){
+        if(Collected != null){
+            Collected(this, EventArgs.Empty);
+        }
     }
 
     //Method that returns the amount of jewels collected:

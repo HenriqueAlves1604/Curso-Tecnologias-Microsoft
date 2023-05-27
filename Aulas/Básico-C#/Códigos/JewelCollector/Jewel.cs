@@ -7,7 +7,7 @@ public class Jewel : Item{
     private int value;
 
     //Constructor:
-    public Jewel(string type, int xPosition, int yPosition) : base("J" + type[0]) {
+    public Jewel(string type, int xPosition, int yPosition) : base("J" + type[0], false, true) {
         this.type = type;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
