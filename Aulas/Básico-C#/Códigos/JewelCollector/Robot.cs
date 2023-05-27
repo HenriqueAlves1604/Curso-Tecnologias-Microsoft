@@ -4,10 +4,12 @@ public class Robot : Item{
     private List<Jewel> bag;
     private int xPosition;
     private int yPosition;
-    public event EventHandler MovedUp;
-    public event EventHandler MovedDown;
-    public event EventHandler MovedRight;
-    public event EventHandler MovedLeft;
+
+    //Declarating the events:
+    public event EventHandler? MovedUp;
+    public event EventHandler? MovedDown;
+    public event EventHandler? MovedRight;
+    public event EventHandler? MovedLeft;
     
 
     //Constructor:
@@ -30,12 +32,12 @@ public class Robot : Item{
         return this.xPosition;
     }
 
-    public void setXPosition(int yPosition){
-        this.yPosition = yPosition;
+    public void setXPosition(int xPosition){
+        this.xPosition = xPosition;
     }
 
     public int getYPosition() {
-        return this.xPosition;
+        return this.yPosition;
     }
 
     public void setYPosition(int yPosition){
@@ -48,11 +50,14 @@ public class Robot : Item{
     //Method that moves the robot one unit up:
     public void moveUp(){
         this.yPosition -= 1;
+        Console.WriteLine(this.yPosition);
         OnMovedUp();
     }
 
     protected virtual void OnMovedUp(){
+        //Checks if there are subscribers
         if(MovedUp != null){
+            //Calls the event
             MovedUp(this, EventArgs.Empty);
         }
     }
@@ -60,6 +65,7 @@ public class Robot : Item{
     //Method that moves the robot one unit down:
     public void moveDown(){
         this.yPosition += 1;
+        Console.WriteLine(this.yPosition);
         OnMovedDown();
     }
 
@@ -73,6 +79,7 @@ public class Robot : Item{
     //Method that moves the robot one unit to the right:
     public void moveRight(){
         this.xPosition += 1;
+        Console.WriteLine(this.xPosition);
         OnMovedRight();
     }
 
@@ -85,6 +92,7 @@ public class Robot : Item{
     //Method that moves the robot one unit to the left:
     public void moveLeft(){
         this.xPosition -= 1;
+        Console.WriteLine(this.xPosition);
         OnMovedLeft();
     }
 

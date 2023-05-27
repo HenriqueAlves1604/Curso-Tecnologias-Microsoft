@@ -3,7 +3,8 @@ public class AppMain {
 
     public static void Main() {
         bool running = true;
-        Map map = new Map(10,10);
+        Robot robot = new Robot();
+        Map map = new Map(10,10, robot);
 
         //Adding jewels on the map:
         map.addJewel("Red", 1, 9);
@@ -33,26 +34,26 @@ public class AppMain {
             
             switch(command){
                 case 'w':
-                    map.getRobot().moveUp();
+                    robot.moveUp();
                     break;
                 case 'a':
-                    map.getRobot().moveLeft();
+                    robot.moveLeft();
                     break;
                 case 's':
-                    map.getRobot().moveDown();
+                    robot.moveDown();
                     break;
                 case 'd':
-                    map.getRobot().moveRight();
+                    robot.moveRight();
                     break;
                 case 'g':
-                    map.getRobot().collectJewel();
+                    robot.collectJewel();
                     break;
                 case 'q':
                     running = false;
                     break;
             }
-            string jewels = map.getRobot().jewelsCollected();
-            string points = map.getRobot().totalPoints();
+            string jewels = robot.jewelsCollected();
+            string points = robot.totalPoints();
             Console.WriteLine(jewels + " | " + points + "\n");
             
         } while (running);

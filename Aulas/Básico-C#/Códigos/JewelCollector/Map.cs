@@ -7,7 +7,7 @@ public class Map {
     private Robot robot;
 
     //Constructor:
-    public Map(int rows, int cols){
+    public Map(int rows, int cols, Robot robot){
         this.MAP_ROWS = rows;
         this.MAP_COLS = cols;
         map = new Item[MAP_ROWS][];
@@ -17,8 +17,12 @@ public class Map {
                 this.map[i][j] = new Empty(j, i);
             }
         }
-        robot = new Robot();
         this.addRobot(0,0);
+        this.robot = robot;
+        robot.MovedUp += Robot_MovedUp;
+        robot.MovedDown += Robot_MovedDown;
+        robot.MovedRight += Robot_MovedRight;
+        robot.MovedLeft += Robot_MovedLeft;
     }
 
     //Gets and Sets:
@@ -85,5 +89,38 @@ public class Map {
     //Method that adds the robot to the map:
     public void addRobot(int xPosition, int yPosition){
         map[yPosition][xPosition] = robot;
+    }
+
+    //Methods that deals with the events:
+    //Map's update when the robot moves up:
+    private void Robot_MovedUp(object? sender, EventArgs e){
+        int x = robot.getXPosition();
+        int y = robot.getYPosition();
+        this.addRobot(x, y);
+        map[y + 1][x] = new Empty(x, y + 1);
+    }
+
+    //Map's update when the robot moves down:
+    private void Robot_MovedDown(object? sender, EventArgs e){
+        int x = robot.getXPosition();
+        int y = robot.getYPosition();
+        this.addRobot(x, y);
+        map[y - 1][x] = new Empty(x, y - 1);
+    }
+
+    //Map's update when the robot moves right:
+    private void Robot_MovedRight(object? sender, EventArgs e){
+        int x = robot.getXPosition();
+        int y = robot.getYPosition();
+        this.addRobot(x + 1, y);
+        map[y][x - 1] = new Empty(x - 1, y);
+    }
+
+    //Map's update when the robot moves left:
+    private void Robot_MovedLeft(object? sender, EventArgs e){
+        int x = robot.getXPosition();
+        int y = robot.getYPosition();
+        this.addRobot(x + 1, y);
+        map[y][x + 1] = new Empty(x + 1, y);
     }
 }
