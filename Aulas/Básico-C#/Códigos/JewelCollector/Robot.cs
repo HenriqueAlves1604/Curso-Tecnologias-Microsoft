@@ -1,7 +1,7 @@
 namespace JewelCollector;
 
 public class Robot : Item{
-    private List<Jewel> bag;
+    private List<Item> bag;
     private int xPosition;
     private int yPosition;
 
@@ -15,17 +15,17 @@ public class Robot : Item{
 
     //Constructor:
     public Robot() : base("ME", true, false) {
-        this.bag = new List<Jewel>();
+        this.bag = new List<Item>();
         this.xPosition = 0;
         this.yPosition = 0;
     }
 
     //Gets and sets:
-    public List<Jewel> getBag() {
+    public List<Item> getBag() {
         return this.bag;
     }
 
-    public void setBag(List<Jewel> bag){
+    public void setBag(List<Item> bag){
         this.bag = bag;
     }
 
@@ -51,7 +51,6 @@ public class Robot : Item{
     //Method that moves the robot one unit up:
     public void moveUp(){
         this.yPosition -= 1;
-        Console.WriteLine(" Y= " + this.yPosition);
         OnMovedUp();
     }
 
@@ -66,7 +65,6 @@ public class Robot : Item{
     //Method that moves the robot one unit down:
     public void moveDown(){
         this.yPosition += 1;
-        Console.WriteLine(" Y= " + this.yPosition);
         OnMovedDown();
     }
 
@@ -80,7 +78,6 @@ public class Robot : Item{
     //Method that moves the robot one unit to the right:
     public void moveRight(){
         this.xPosition += 1;
-        Console.WriteLine(" X= " + this.xPosition);
         OnMovedRight();
     }
 
@@ -93,7 +90,6 @@ public class Robot : Item{
     //Method that moves the robot one unit to the left:
     public void moveLeft(){
         this.xPosition -= 1;
-        Console.WriteLine(" X= " + this.xPosition);
         OnMovedLeft();
     }
 
@@ -106,6 +102,7 @@ public class Robot : Item{
     //Method that collects a jewel from the map:
     public void collect(){
         OnCollect();
+        
     }
 
     protected virtual void OnCollect(){
@@ -123,7 +120,9 @@ public class Robot : Item{
     public string totalPoints(){
         int points = 0;
         for(int i = 0; i < bag.Count; i++){
-            points += bag[i].getValue();
+            if(bag[i] is Jewel){
+                points += ((Jewel) bag[i]).getValue();
+            }
         }
         return "Bag total value: " + points;
     }
