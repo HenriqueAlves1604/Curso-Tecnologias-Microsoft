@@ -91,23 +91,39 @@ public class Map {
 
     //Methods that check if the movements are valid:
     public bool moveUpIsValid(int x, int y){
-        bool valid = map[y - 1][x].getTranspassable();
-        return valid;
+        try{
+            bool valid = map[y - 1][x].getTranspassable();
+            return valid;
+        }   catch(IndexOutOfRangeException) {
+            return false;
+        }
     }
 
     public bool moveDownIsValid(int x, int y){
-        bool valid = map[y + 1][x].getTranspassable();
-        return valid;
+        try{
+            bool valid = map[y + 1][x].getTranspassable();
+            return valid;
+        }   catch(IndexOutOfRangeException) {
+            return false;
+        }
     }
 
     public bool moveRightIsValid(int x, int y){
-        bool valid = map[y][x + 1].getTranspassable();
-        return valid;
+        try{
+            bool valid = map[y][x + 1].getTranspassable();
+            return valid;
+        }   catch(IndexOutOfRangeException) {
+            return false;
+        }
     }
 
     public bool moveLeftIsValid(int x, int y){
-        bool valid = map[y][x - 1].getTranspassable();
-        return valid;
+        try{
+            bool valid = map[y][x - 1].getTranspassable();
+            return valid;
+        }   catch(IndexOutOfRangeException) {
+            return false;
+        }
     }
 
     //Method that adds the robot to the map:
@@ -120,32 +136,48 @@ public class Map {
     private void Robot_MovedUp(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        this.addRobot(x, y);
-        map[y + 1][x] = new Empty(x, y + 1);
+        try{
+            this.addRobot(x, y);
+            map[y + 1][x] = new Empty(x, y + 1);
+        }   catch(IndexOutOfRangeException) {
+            robot.setYPosition(y + 1);
+        }
     }
 
     //Map's update when the robot moves down:
     private void Robot_MovedDown(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        this.addRobot(x, y);
-        map[y - 1][x] = new Empty(x, y - 1);
+        try{
+            this.addRobot(x, y);
+            map[y - 1][x] = new Empty(x, y - 1);
+        }   catch(IndexOutOfRangeException) {
+            robot.setYPosition(y - 1);
+        }
     }
 
     //Map's update when the robot moves right:
     private void Robot_MovedRight(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        this.addRobot(x, y);
-        map[y][x - 1] = new Empty(x - 1, y);
+        try{
+            this.addRobot(x, y);
+            map[y][x - 1] = new Empty(x - 1, y);
+        }   catch(IndexOutOfRangeException) {
+            robot.setXPosition(x - 1);
+        }
     }
 
     //Map's update when the robot moves left:
     private void Robot_MovedLeft(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        this.addRobot(x, y);
-        map[y][x + 1] = new Empty(x + 1, y);
+        try{
+            this.addRobot(x, y);
+            map[y][x + 1] = new Empty(x + 1, y);
+        }   catch(IndexOutOfRangeException) {
+            robot.setXPosition(x + 1);
+        }
     }
 
     // Map's update when the robot collects an Item:
