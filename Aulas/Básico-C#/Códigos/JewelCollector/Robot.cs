@@ -50,7 +50,7 @@ public class Robot : Item{
     //Method that moves the robot one unit up:
     public void moveUp(){
         this.yPosition -= 1;
-        Console.WriteLine(this.yPosition);
+        Console.WriteLine(" Y= " + this.yPosition);
         OnMovedUp();
     }
 
@@ -65,7 +65,7 @@ public class Robot : Item{
     //Method that moves the robot one unit down:
     public void moveDown(){
         this.yPosition += 1;
-        Console.WriteLine(this.yPosition);
+        Console.WriteLine(" Y= " + this.yPosition);
         OnMovedDown();
     }
 
@@ -79,7 +79,7 @@ public class Robot : Item{
     //Method that moves the robot one unit to the right:
     public void moveRight(){
         this.xPosition += 1;
-        Console.WriteLine(this.xPosition);
+        Console.WriteLine(" X= " + this.xPosition);
         OnMovedRight();
     }
 
@@ -92,7 +92,7 @@ public class Robot : Item{
     //Method that moves the robot one unit to the left:
     public void moveLeft(){
         this.xPosition -= 1;
-        Console.WriteLine(this.xPosition);
+        Console.WriteLine(" X= " + this.xPosition);
         OnMovedLeft();
     }
 

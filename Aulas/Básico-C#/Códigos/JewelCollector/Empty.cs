@@ -16,12 +16,12 @@ public class Empty : Item {
         return this.xPosition;
     }
 
-    public void setXPosition(int yPosition){
-        this.yPosition = yPosition;
+    public void setXPosition(int xPosition){
+        this.xPosition = xPosition;
     }
 
     public int getYPosition() {
-        return this.xPosition;
+        return this.yPosition;
     }
 
     public void setYPosition(int yPosition){

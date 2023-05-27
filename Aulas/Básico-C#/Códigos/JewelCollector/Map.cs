@@ -17,8 +17,8 @@ public class Map {
                 this.map[i][j] = new Empty(j, i);
             }
         }
-        this.addRobot(0,0);
         this.robot = robot;
+        this.map[0][0] = robot;
         robot.MovedUp += Robot_MovedUp;
         robot.MovedDown += Robot_MovedDown;
         robot.MovedRight += Robot_MovedRight;
@@ -46,10 +46,8 @@ public class Map {
     }
 
     public void setRobot(Robot robot) {
-        Console.WriteLine("ROBO ANTES: X = " + getRobot().getXPosition() + ", Y = " + getRobot().getYPosition());
         this.removeItem(getRobot().getXPosition(),getRobot().getYPosition());
         this.robot = robot;
-        Console.WriteLine("ROBO DEPOIS: X = " + getRobot().getXPosition() + ", Y = " + getRobot().getYPosition());
         this.addRobot(getRobot().getXPosition(),getRobot().getYPosition());
     }
 
@@ -58,7 +56,11 @@ public class Map {
     public void printMap(){
         for(int i = 0; i < MAP_ROWS; i++){
             for(int j = 0; j < MAP_COLS; j++){
-                Console.Write(map[i][j].toString() + "  ");
+                try{
+                    Console.Write(map[i][j].toString() + "  ");
+                }   catch(System.NullReferenceException){
+                    Console.WriteLine("Nenhum objeto na posição " + i + ", " + j);
+                }
             }
             Console.Write("\n");
         }
