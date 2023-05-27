@@ -1,8 +1,8 @@
 namespace JewelCollector;
 
 public class Robot : Item{
-    private List<Item> bag;
-    private int energy;
+    public List<Item> bag {get; set;}
+    public int energy {get; set;}
 
     //Declarating the events:
     public event EventHandler? MovedUp;
@@ -17,40 +17,10 @@ public class Robot : Item{
         this.bag = new List<Item>();
         this.energy = 3;
     }
-
-    //Gets and sets:
-    public List<Item> getBag() {
-        return this.bag;
-    }
-
-    public void setBag(List<Item> bag){
+    public Robot(List<Item> bag, int energy) : base(0, 0, "ME", true, false) {
         this.bag = bag;
-    }
-
-    public int getXPosition() {
-        return this.xPosition;
-    }
-
-    public void setXPosition(int xPosition){
-        this.xPosition = xPosition;
-    }
-
-    public int getYPosition() {
-        return this.yPosition;
-    }
-
-    public void setYPosition(int yPosition){
-        this.yPosition = yPosition;
-    }
-    public int getEnergy() {
-        return this.energy;
-    }
-
-    public void setEnergy(int energy){
         this.energy = energy;
     }
-
-    
 
     //Methods:
     //Method that moves the robot one unit up:
@@ -126,7 +96,7 @@ public class Robot : Item{
         int points = 0;
         for(int i = 0; i < bag.Count; i++){
             if(bag[i] is Jewel){
-                points += ((Jewel) bag[i]).getValue();
+                points += ((Jewel) bag[i]).value;
             }
         }
         return "Bag total value: " + points;

@@ -18,7 +18,7 @@ public class Map {
             }
         }
         this.robot = robot;
-        this.map[0][0] = robot;
+        this.addRobot(0,0);
         robot.MovedUp += Robot_MovedUp;
         robot.MovedDown += Robot_MovedDown;
         robot.MovedRight += Robot_MovedRight;
@@ -32,24 +32,6 @@ public class Map {
     }
     public int getMAP_COLS() {
         return this.MAP_COLS;
-    }
-
-    public Item[][] getMap() {
-        return this.map;
-    }
-
-    public void setMap(Item[][] map){
-        this.map = map;
-    }
-
-    public Robot getRobot() {
-        return this.robot;
-    }
-
-    public void setRobot(Robot robot) {
-        this.removeItem(getRobot().getXPosition(),getRobot().getYPosition());
-        this.robot = robot;
-        this.addRobot(getRobot().getXPosition(),getRobot().getYPosition());
     }
 
     //Mathods:
@@ -144,7 +126,7 @@ public class Map {
 
     //Method that checks if the game is over. If the player loses, returns -1; if the player wins returns 1; if it's not over, returns 0
     public int checkGameOver(){
-        if(robot.getEnergy() == 0)  return -1;
+        if(robot.energy == 0)  return -1;
         for(int i = 0; i < MAP_ROWS; i++){
             for(int j = 0; j < MAP_COLS; j++){
                 if(map[i][j] is Jewel){
@@ -157,22 +139,26 @@ public class Map {
 
     //Method that adds items randomly on the map:
     public void fillMap(){
-        int blueAmount = (getMAP_COLS() * getMAP_ROWS() * 3) / 100; 
-        int greenAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100; 
-        int redAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100;
+        int blueJAmount = (getMAP_COLS() * getMAP_ROWS() * 3) / 100; 
+        int greenJAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100; 
+        int redJAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100;
         int waterAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
-        int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 5) / 100;
+        int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 10) / 100;
 
-
+        addItemRandomly<BlueJewel>(new BlueJewel(0,0), blueJAmount);
+        addItemRandomly<GreenJewel>(new GreenJewel(0,0), greenJAmount);
+        addItemRandomly<RedJewel>(new RedJewel(0,0), redJAmount);
+        addItemRandomly<Water>(new Water(0,0), blueJAmount);
+        addItemRandomly<Tree>(new Tree(0,0), blueJAmount);
     }
 
-    //Method that adds an item randomly on the map:
+    //Method that adds a generic item randomly on the map:
     public void addItemRandomly<T>(T item1, int amount) where T : Item{
         int count = 0;
         while(count < amount){
             Random random = new Random();
-            int xPosition = random.Next(0, getMAP_COLS() + 1);
-            int yPosition = random.Next(0, getMAP_ROWS() + 1);
+            int xPosition = random.Next(0, getMAP_COLS());  
+            int yPosition = random.Next(0, getMAP_ROWS());
             if(map[yPosition][xPosition] is Empty){
                 map[yPosition][xPosition] = item1;
                 count++;
@@ -235,12 +221,12 @@ public class Map {
     private void Robot_Collected(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        List<Item> newBag = robot.getBag();
+        List<Item> newBag = robot.bag;
 
         try{
             if(map[y][x + 1].getCollectable()){
                 newBag.Add(map[y][x + 1]);
-                robot.setBag(newBag);
+                robot.bag = newBag;
                 map[y][x + 1] = new Empty(x + 1, y);
             }
         }   catch(IndexOutOfRangeException)  {}
@@ -248,7 +234,7 @@ public class Map {
         try{
             if(map[y][x - 1].getCollectable()){
                 newBag.Add(map[y][x - 1]);
-                robot.setBag(newBag);
+                robot.bag = newBag;
                 map[y][x - 1] = new Empty(x - 1, y);
             }
         }   catch(IndexOutOfRangeException)  {}
@@ -256,7 +242,7 @@ public class Map {
         try{
             if(map[y + 1][x].getCollectable()){
                 newBag.Add(map[y + 1][x]);
-                robot.setBag(newBag);
+                robot.bag = newBag;
                 map[y + 1][x] = new Empty(x, y + 1);
             }
         }   catch(IndexOutOfRangeException)  {}
@@ -264,7 +250,7 @@ public class Map {
         try{
             if(map[y - 1][x].getCollectable()){
                 newBag.Add(map[y - 1][x]);
-                robot.setBag(newBag);
+                robot.bag = newBag;
                 map[y - 1][x] = new Empty(x, y - 1);
             }
         }   catch(IndexOutOfRangeException)  {}

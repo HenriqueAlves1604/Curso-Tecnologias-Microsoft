@@ -71,10 +71,10 @@ public class AppMain {
 
             gameOver = map.checkGameOver();
             if(gameOver == 1){
-                rows += 1;
-                cols += 1;
                 gameOver = 0;
-                map = new Map(rows, cols, robot);
+                robot = new Robot(robot.bag, robot.energy);
+                map = new Map(++rows, ++cols, robot);
+                map.fillMap();
             }
 
         } while (gameOver != -1 && running);
