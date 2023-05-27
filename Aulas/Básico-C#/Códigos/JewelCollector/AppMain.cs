@@ -50,11 +50,12 @@ public class AppMain {
                 case 'q':
                     running = false;
                     break;
+
+                robot.jewelsCollected();
+                Console.Write(" | ");
+                robot.totalPoints();
             }
             
-            robot.jewelsCollected();
-            Console.Write(" | ");
-            robot.totalPoints();
         } while (running);
     }
 }

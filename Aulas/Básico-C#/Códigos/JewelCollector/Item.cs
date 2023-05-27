@@ -9,7 +9,7 @@ public class Item {
     }
 
     //toString():
-    public void toString(){
-        Console.Write(symbol);
+    public string toString(){
+        return symbol;
     }
 }
