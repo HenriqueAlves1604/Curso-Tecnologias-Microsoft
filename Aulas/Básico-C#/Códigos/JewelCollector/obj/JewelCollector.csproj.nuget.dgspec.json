@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\msft35\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\JewelCollector.csproj": {}
+    "C:\\Users\\henri\\OneDrive\\Documentos\\Unicamp\\Ciência da Computação\\Extensão\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\JewelCollector.csproj": {}
   },
   "projects": {
-    "C:\\Users\\msft35\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\JewelCollector.csproj": {
+    "C:\\Users\\henri\\OneDrive\\Documentos\\Unicamp\\Ciência da Computação\\Extensão\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\JewelCollector.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\msft35\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\JewelCollector.csproj",
+        "projectUniqueName": "C:\\Users\\henri\\OneDrive\\Documentos\\Unicamp\\Ciência da Computação\\Extensão\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\JewelCollector.csproj",
         "projectName": "JewelCollector",
-        "projectPath": "C:\\Users\\msft35\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\JewelCollector.csproj",
-        "packagesPath": "C:\\Users\\msft35\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\msft35\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\obj\\",
+        "projectPath": "C:\\Users\\henri\\OneDrive\\Documentos\\Unicamp\\Ciência da Computação\\Extensão\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\JewelCollector.csproj",
+        "packagesPath": "C:\\Users\\henri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\henri\\OneDrive\\Documentos\\Unicamp\\Ciência da Computação\\Extensão\\Curso-Tecnologias-Microsoft\\Aulas\\Básico-C#\\Códigos\\JewelCollector\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\msft35\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\henri\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -35,8 +35,8 @@
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

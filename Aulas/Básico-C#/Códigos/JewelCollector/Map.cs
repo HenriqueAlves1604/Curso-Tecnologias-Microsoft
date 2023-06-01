@@ -56,7 +56,7 @@ public class Map {
                 map[yPosition][xPosition] = new RedJewel(xPosition, yPosition);
                 break;
             case "Blue":
-                map[yPosition][xPosition] = new BlueJewel(xPosition, yPosition);
+                map[yPosition][xPosition] = new BlueJewel(xPosition, yPosition, this.robot);
                 break;
             case "Green":
                 map[yPosition][xPosition] = new GreenJewel(xPosition, yPosition);
@@ -76,7 +76,7 @@ public class Map {
                 map[yPosition][xPosition] = new Water(xPosition, yPosition);
                 break;
             case "Tree":
-                map[yPosition][xPosition] = new Tree(xPosition, yPosition);
+                map[yPosition][xPosition] = new Tree(xPosition, yPosition, this.robot);
                 break;
         }
     }
@@ -120,7 +120,7 @@ public class Map {
 
     //Method that adds the robot to the map:
     public void addRobot(int xPosition, int yPosition){
-        map[yPosition][xPosition] = robot;
+        map[yPosition][xPosition] = this.robot;
     }
 
     //Method that checks if the game is over. If the player loses, returns -1; if the player wins returns 1; if it's not over, returns 0
@@ -141,36 +141,68 @@ public class Map {
     }
 
     //Method that adds items randomly on the map:
-    public void fillMap(){
+    public void fillMap(bool firstPhase){
+        int i = 0;
         int blueJAmount = (getMAP_COLS() * getMAP_ROWS() * 3) / 100; 
         int greenJAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100; 
         int redJAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100;
         int waterAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
         int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
 
-        addItemRandomly<BlueJewel>(new BlueJewel(0,0), blueJAmount);
-        addItemRandomly<GreenJewel>(new GreenJewel(0,0), greenJAmount);
-        addItemRandomly<RedJewel>(new RedJewel(0,0), redJAmount);
-        addItemRandomly<Water>(new Water(0,0), waterAmount);
-        addItemRandomly<Tree>(new Tree(0,0), treeAmount);
+        while(i < blueJAmount){
+            addItemRandomly<BlueJewel>(new BlueJewel(0,0, this.robot));
+            i++;
+        }
+        i = 0;
+
+        while(i < greenJAmount){
+            addItemRandomly<GreenJewel>(new GreenJewel(0,0));
+            i++;
+        }
+        i = 0;
+
+        while(i < redJAmount){
+            addItemRandomly<RedJewel>(new RedJewel(0,0));
+            i++;
+        }
+        i = 0;
+
+        while(i < waterAmount){
+            addItemRandomly<Water>(new Water(0,0));
+            i++;
+        }
+        i = 0;
+
+        while(i < treeAmount){
+            addItemRandomly<Tree>(new Tree(0,0, this.robot));
+            i++;
+        }
+        i = 0;
+        
+        
+        if(!firstPhase){
+            int radioactiveAmount = (getMAP_COLS() * getMAP_ROWS() * 1) / 100;
+            
+            while(i < radioactiveAmount){
+                addItemRandomly<Radioactive>(new Radioactive(i++,0));
+                i++;
+            }
+        i = 0;
+        }
     }
 
     //Method that adds a generic item randomly on the map:
-    public void addItemRandomly<T>(T item1, int amount) where T : Item{
-        int count = 0;
-        if(item1 is BlueJewel){
-            Random random = new Random();
-            int xPosition = random.Next(0,4);
-            int yPosition = random.Next(0,4);
-            map[yPosition][xPosition] = item1;
-        }
-        while(count < amount){
+    public void addItemRandomly<T>(T item1) where T : Item{
+        bool mt = false;
+        while(mt == false){
             Random random = new Random();
             int xPosition = random.Next(0, getMAP_COLS());  
             int yPosition = random.Next(0, getMAP_ROWS());
             if(map[yPosition][xPosition] is Empty){
+                item1.xPosition = xPosition;
+                item1.yPosition = yPosition;
                 map[yPosition][xPosition] = item1;
-                count++;
+                mt = true;
             }
         }
     }
@@ -232,47 +264,45 @@ public class Map {
     private void Robot_Collected(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
-        int collected = 0;
 
         try{
+            if(map[y][x + 1] is IEnergizable){
+                (map[y][x + 1] as IEnergizable)?.updateEnergy();
+            }
             if(map[y][x + 1].getCollectable()){
                 robot.bag.Add(map[y][x + 1]);
                 map[y][x + 1] = new Empty(x + 1, y);
-                collected++;
             }
         }   catch(IndexOutOfRangeException)  {}
 
         try{
+            if(map[y][x - 1] is IEnergizable){
+                (map[y][x - 1] as IEnergizable)?.updateEnergy();
+            }
             if(map[y][x - 1].getCollectable()){
                 robot.bag.Add(map[y][x - 1]);
                 map[y][x - 1] = new Empty(x - 1, y);
-                collected++;
             }
         }   catch(IndexOutOfRangeException)  {}
 
         try{
+            if(map[y + 1][x] is IEnergizable){
+                (map[y + 1][x] as IEnergizable)?.updateEnergy();
+            }
             if(map[y + 1][x].getCollectable()){
                 robot.bag.Add(map[y + 1][x]);
                 map[y + 1][x] = new Empty(x, y + 1);
-                collected++;
             }
         }   catch(IndexOutOfRangeException)  {}
 
         try{
+            if(map[y - 1][x] is IEnergizable){
+                (map[y - 1][x] as IEnergizable)?.updateEnergy();
+            }
             if(map[y - 1][x].getCollectable()){
                 robot.bag.Add(map[y - 1][x]);
                 map[y - 1][x] = new Empty(x, y - 1);
-                collected++;
             }
         }   catch(IndexOutOfRangeException)  {}
-        Console.WriteLine("AMT COLLECTED: " + collected);
-        for(int i = robot.bag.Count - collected; i < robot.bag.Count; i++){
-            Console.WriteLine(robot.bag[i]);
-            if(robot.bag[i] is BlueJewel){
-                robot.energy += 5;
-            }   else if(robot.bag[i] is Tree){
-                robot.energy += 3;
-            }
-        }
     }
 }

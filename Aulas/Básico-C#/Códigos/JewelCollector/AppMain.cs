@@ -7,26 +7,8 @@ public class AppMain {
         Robot robot = new Robot();
         
         Map map = new Map(rows, cols, robot);
+        map.fillMap(true);
 
-        //Adding jewels on the map:
-        map.addJewel("Red", 1, 9);
-        map.addJewel("Red", 8, 8);
-        map.addJewel("Green", 9, 1);
-        map.addJewel("Green", 7, 6);
-        map.addJewel("Blue", 3, 4);
-        map.addJewel("Blue", 2, 1);
-
-        //Adding obstacles on the map:
-        for(int i = 0; i < 7; i++){
-            map.addObstacle("Water", 5, i);
-        }
-        map.addObstacle("Tree", 5, 9);
-        map.addObstacle("Tree", 3, 9);
-        map.addObstacle("Tree", 8, 3);
-        map.addObstacle("Tree", 2, 5);
-        map.addObstacle("Tree", 1, 4);
-  
-    
         do {
             map.printMap();
             Console.Write("Enter the command: ");
@@ -75,7 +57,7 @@ public class AppMain {
                 gameOver = 0;
                 robot = new Robot(robot.bag, robot.energy);
                 map = new Map(++rows, ++cols, robot);
-                map.fillMap();
+                map.fillMap(false);
             }
 
         } while (gameOver != -1 && running);
