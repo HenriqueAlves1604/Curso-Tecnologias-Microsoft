@@ -38,7 +38,7 @@ public class AppMain {
 
             switch(command){
                 case 'w':
-                    if(map.moveUpIsValid(robotX, robotY)){
+                    if(map.moveUpIsValid(robotX, robotY)){ 
                         robot.moveUp();
                     }
                     break;
