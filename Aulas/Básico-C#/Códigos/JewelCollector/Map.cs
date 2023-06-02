@@ -156,7 +156,6 @@ public class Map {
     /// <returns>-1 if the player loses, 1 if the player wins, 0 if the game is not over.</returns>
     public int checkGameOver(){
         if(robot.energy <= 0) {
-            Console.WriteLine("NO ENERGY! YOU LOST!");
             return -1;
         }
         for(int i = 0; i < MAP_ROWS; i++){
@@ -166,7 +165,6 @@ public class Map {
                 }
             }
         }
-        Console.WriteLine("YOU WON!\n");
         return 1;
     }
 

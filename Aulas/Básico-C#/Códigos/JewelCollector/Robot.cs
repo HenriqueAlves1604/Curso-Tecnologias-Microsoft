@@ -40,7 +40,7 @@ public class Robot : Item{
     public event EventHandler? Collected;
     
     /// <summary>
-    /// Initializes a new instance of the <see cref="Robot"/> class with the specified position, symbol and whether it is transpassable or collectable. It sets the robot's bag as an empty bag and sets it's energy with the value 5.
+    /// Initializes a new instance of the <see cref="Robot"/> class with the specified position, symbol and whether it is transpassable or collectable. It sets the robot's bag as an empty bag and sets its energy with the value 5.
     /// </summary>
     public Robot() : base(0, 0, "ME", true, false) {
         this.bag = new List<Item>();
