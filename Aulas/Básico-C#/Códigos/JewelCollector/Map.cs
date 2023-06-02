@@ -3,8 +3,8 @@ namespace JewelCollector;
 public class Map {
     private readonly int MAP_ROWS;
     private readonly int MAP_COLS;
-    private Item[][] map;
-    private Robot robot;
+    public Item[][] map;
+    public Robot robot;
 
     //Constructor:
     public Map(int rows, int cols, Robot robot){
@@ -125,7 +125,7 @@ public class Map {
 
     //Method that checks if the game is over. If the player loses, returns -1; if the player wins returns 1; if it's not over, returns 0
     public int checkGameOver(){
-        if(robot.energy == 0) {
+        if(robot.energy <= 0) {
             Console.WriteLine("NO ENERGY! YOU LOST!");
             return -1;
         }
@@ -143,10 +143,10 @@ public class Map {
     //Method that adds items randomly on the map:
     public void fillMap(bool firstPhase){
         int i = 0;
-        int blueJAmount = (getMAP_COLS() * getMAP_ROWS() * 3) / 100; 
+        int blueJAmount = (getMAP_COLS() * getMAP_ROWS() * 5) / 100; 
         int greenJAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100; 
         int redJAmount = (getMAP_COLS() * getMAP_ROWS() * 2) / 100;
-        int waterAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
+        int waterAmount = (getMAP_COLS() * getMAP_ROWS() * 4) / 100;
         int treeAmount = (getMAP_COLS() * getMAP_ROWS() * 7) / 100;
 
         while(i < blueJAmount){
@@ -184,7 +184,7 @@ public class Map {
             int radioactiveAmount = (getMAP_COLS() * getMAP_ROWS() * 1) / 100;
             
             while(i < radioactiveAmount){
-                addItemRandomly<Radioactive>(new Radioactive(i++,0));
+                addItemRandomly<Radioactive>(new Radioactive(0, 0, robot));
                 i++;
             }
         i = 0;
@@ -212,6 +212,7 @@ public class Map {
     private void Robot_MovedUp(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
+        Radioactive.updateEnergy(this);
         try{
             this.addRobot(x, y);
             map[y + 1][x] = new Empty(x, y + 1);
@@ -225,6 +226,8 @@ public class Map {
     private void Robot_MovedDown(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
+        Radioactive.updateEnergy(this);
+
         try{
             this.addRobot(x, y);
             map[y - 1][x] = new Empty(x, y - 1);
@@ -238,6 +241,8 @@ public class Map {
     private void Robot_MovedRight(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
+        Radioactive.updateEnergy(this);
+
         try{
             this.addRobot(x, y);
             map[y][x - 1] = new Empty(x - 1, y);
@@ -251,6 +256,8 @@ public class Map {
     private void Robot_MovedLeft(object? sender, EventArgs e){
         int x = robot.getXPosition();
         int y = robot.getYPosition();
+        Radioactive.updateEnergy(this);
+
         try{
             this.addRobot(x, y);
             map[y][x + 1] = new Empty(x + 1, y);
@@ -266,7 +273,7 @@ public class Map {
         int y = robot.getYPosition();
 
         try{
-            if(map[y][x + 1] is IEnergizable){
+            if(map[y][x + 1] is IEnergizable && map[y][x + 1] is not Radioactive){
                 (map[y][x + 1] as IEnergizable)?.updateEnergy();
             }
             if(map[y][x + 1].getCollectable()){
@@ -276,7 +283,7 @@ public class Map {
         }   catch(IndexOutOfRangeException)  {}
 
         try{
-            if(map[y][x - 1] is IEnergizable){
+            if(map[y][x - 1] is IEnergizable && map[y][x - 1] is not Radioactive){
                 (map[y][x - 1] as IEnergizable)?.updateEnergy();
             }
             if(map[y][x - 1].getCollectable()){
@@ -286,7 +293,7 @@ public class Map {
         }   catch(IndexOutOfRangeException)  {}
 
         try{
-            if(map[y + 1][x] is IEnergizable){
+            if(map[y + 1][x] is IEnergizable && map[y + 1][x] is not Radioactive){
                 (map[y + 1][x] as IEnergizable)?.updateEnergy();
             }
             if(map[y + 1][x].getCollectable()){
@@ -296,7 +303,7 @@ public class Map {
         }   catch(IndexOutOfRangeException)  {}
 
         try{
-            if(map[y - 1][x] is IEnergizable){
+            if(map[y - 1][x] is IEnergizable && map[y - 1][x] is not Radioactive){
                 (map[y - 1][x] as IEnergizable)?.updateEnergy();
             }
             if(map[y - 1][x].getCollectable()){
