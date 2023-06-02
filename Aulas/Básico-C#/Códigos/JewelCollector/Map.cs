@@ -3,8 +3,8 @@ namespace JewelCollector;
 public class Map {
     private readonly int MAP_ROWS;
     private readonly int MAP_COLS;
-    public Item[][] map;
-    public Robot robot;
+    public Item[][] map {get; set;}
+    public Robot robot {get; set;}
 
     //Constructor:
     public Map(int rows, int cols, Robot robot){

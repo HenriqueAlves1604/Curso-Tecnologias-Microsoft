@@ -1,11 +1,11 @@
 namespace JewelCollector;
 
 public class Item {
-    public int xPosition;
-    public int yPosition;
-    public string symbol;
-    public bool transpassable;
-    public bool collectable;
+    public int xPosition {get; set;}
+    public int yPosition {get; set;}
+    public string symbol {get; set;}
+    public bool transpassable {get; set;}
+    public bool collectable {get; set;}
 
     //Constructor:
     public Item (int xPosition, int yPosition, string symbol, bool transpassable, bool collectable){

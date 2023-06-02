@@ -18,7 +18,7 @@ public class AppMain {
             int robotX = robot.getXPosition();
             int robotY = robot.getYPosition();
 
-            switch(command){
+            switch(command) {
                 case 'w':
                     if(map.moveUpIsValid(robotX, robotY)){ 
                         robot.moveUp();
