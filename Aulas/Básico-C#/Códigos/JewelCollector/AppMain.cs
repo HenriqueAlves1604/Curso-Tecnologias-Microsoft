@@ -15,8 +15,8 @@ public class AppMain {
             ConsoleKeyInfo pressedKey = Console.ReadKey();
             Console.WriteLine("");
             char command = pressedKey.KeyChar;
-            int robotX = robot.getXPosition();
-            int robotY = robot.getYPosition();
+            int robotX = robot.xPosition;
+            int robotY = robot.yPosition;
 
             switch(command) {
                 case 'w':

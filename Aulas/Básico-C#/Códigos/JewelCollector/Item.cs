@@ -1,14 +1,43 @@
 namespace JewelCollector;
 
+/// <summary>
+/// Represents an item in the map of the game.
+/// </summary>
 public class Item {
+    /// <summary>
+    /// Gets or sets the X position of the item.
+    /// </summary>
     public int xPosition {get; set;}
+
+    /// <summary>
+    /// Gets or sets the Y position of the item.
+    /// </summary>
     public int yPosition {get; set;}
-    public string symbol {get; set;}
+
+    /// <summary>
+    /// Gets the symbol representing the item.
+    /// </summary>
+    public string symbol {get;}
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the item is transpassable.
+    /// </summary>
     public bool transpassable {get; set;}
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the item is collectable.
+    /// </summary>
     public bool collectable {get; set;}
 
-    //Constructor:
-    public Item (int xPosition, int yPosition, string symbol, bool transpassable, bool collectable){
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Item"/> class.
+    /// </summary>
+    /// <param name="xPosition">The X position of the item.</param>
+    /// <param name="yPosition">The Y position of the item.</param>
+    /// <param name="symbol">The symbol representing the item.</param>
+    /// <param name="transpassable">A value indicating whether the item is transpassable.</param>
+    /// <param name="collectable">A value indicating whether the item is collectable.</param>
+    public Item(int xPosition, int yPosition, string symbol, bool transpassable, bool collectable) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.symbol = symbol;
@@ -16,48 +45,11 @@ public class Item {
         this.collectable = collectable;
     }
 
-    //toString():
-    public string toString(){
+    /// <summary>
+    /// Returns a string representation of the item.
+    /// </summary>
+    /// <returns>The symbol representing the item.</returns>
+    public override string ToString() {
         return symbol;
-    }
-
-    //gets e sets:
-    public int getXPosition() {
-        return this.xPosition;
-    }
-
-    public void setXPosition(int xPosition){
-        this.xPosition = xPosition;
-    }
-
-    public int getYPosition() {
-        return this.yPosition;
-    }
-
-    public void setYPosition(int yPosition){
-        this.yPosition = yPosition;
-    }
-    public string getSymbol(){
-        return this.symbol;
-    }
-
-    public void setSymbol(string symbol){
-        this.symbol = symbol;
-    }
-
-    public bool getTranspassable(){
-        return this.transpassable;
-    }
-
-    public void setTranspassable(bool transpassable){
-        this.transpassable = transpassable;
-    }
-
-    public bool getCollectable(){
-        return this.collectable;
-    }
-
-    public void setCollectable(bool collectable){
-        this.collectable = collectable;
     }
 }

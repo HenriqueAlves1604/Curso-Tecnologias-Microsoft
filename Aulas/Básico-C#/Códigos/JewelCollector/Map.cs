@@ -40,7 +40,7 @@ public class Map {
         for(int i = 0; i < MAP_ROWS; i++){
             for(int j = 0; j < MAP_COLS; j++){
                 try{
-                    Console.Write(map[i][j].toString() + "  ");
+                    Console.Write(map[i][j].ToString() + "  ");
                 }   catch(System.NullReferenceException){
                     Console.WriteLine("Nenhum objeto na posição " + i + ", " + j);
                 }
@@ -84,7 +84,7 @@ public class Map {
     //Methods that check if the movements are valid:
     public bool moveUpIsValid(int x, int y){
         try{
-            bool valid = map[y - 1][x].getTranspassable();
+            bool valid = map[y - 1][x].transpassable;
             return valid;
         }   catch(IndexOutOfRangeException) {
             return false;
@@ -93,7 +93,7 @@ public class Map {
 
     public bool moveDownIsValid(int x, int y){
         try{
-            bool valid = map[y + 1][x].getTranspassable();
+            bool valid = map[y + 1][x].transpassable;
             return valid;
         }   catch(IndexOutOfRangeException) {
             return false;
@@ -102,7 +102,7 @@ public class Map {
 
     public bool moveRightIsValid(int x, int y){
         try{
-            bool valid = map[y][x + 1].getTranspassable();
+            bool valid = map[y][x + 1].transpassable;
             return valid;
         }   catch(IndexOutOfRangeException) {
             return false;
@@ -111,7 +111,7 @@ public class Map {
 
     public bool moveLeftIsValid(int x, int y){
         try{
-            bool valid = map[y][x - 1].getTranspassable();
+            bool valid = map[y][x - 1].transpassable;
             return valid;
         }   catch(IndexOutOfRangeException) {
             return false;
@@ -184,7 +184,7 @@ public class Map {
             int radioactiveAmount = (getMAP_COLS() * getMAP_ROWS() * 1) / 100;
             
             while(i < radioactiveAmount){
-                addItemRandomly<Radioactive>(new Radioactive(0, 0, robot));
+                addItemRandomly<Radioactive>(new Radioactive(0, 0));
                 i++;
             }
         i = 0;
@@ -210,22 +210,22 @@ public class Map {
     //Methods that deals with the events:
     //Map's update when the robot moves up:
     private void Robot_MovedUp(object? sender, EventArgs e){
-        int x = robot.getXPosition();
-        int y = robot.getYPosition();
+        int x = robot.xPosition;
+        int y = robot.yPosition;
         Radioactive.updateEnergy(this);
         try{
             this.addRobot(x, y);
             map[y + 1][x] = new Empty(x, y + 1);
             robot.energy--;
         }   catch(IndexOutOfRangeException) {
-            robot.setYPosition(y + 1);
+            robot.yPosition++;
         }
     }
 
     //Updates the map when the robot moves down:
     private void Robot_MovedDown(object? sender, EventArgs e){
-        int x = robot.getXPosition();
-        int y = robot.getYPosition();
+        int x = robot.xPosition;
+        int y = robot.yPosition;
         Radioactive.updateEnergy(this);
 
         try{
@@ -233,14 +233,14 @@ public class Map {
             map[y - 1][x] = new Empty(x, y - 1);
             robot.energy--;
         }   catch(IndexOutOfRangeException) {
-            robot.setYPosition(y - 1);
+            robot.yPosition--;
         }
     }
 
     //Updates the map when the robot moves right:
     private void Robot_MovedRight(object? sender, EventArgs e){
-        int x = robot.getXPosition();
-        int y = robot.getYPosition();
+        int x = robot.xPosition;
+        int y = robot.yPosition;
         Radioactive.updateEnergy(this);
 
         try{
@@ -248,14 +248,14 @@ public class Map {
             map[y][x - 1] = new Empty(x - 1, y);
             robot.energy--;
         }   catch(IndexOutOfRangeException) {
-            robot.setXPosition(x - 1);
+            robot.xPosition--;
         }
     }
 
     //Updates the map when the robot moves left:
     private void Robot_MovedLeft(object? sender, EventArgs e){
-        int x = robot.getXPosition();
-        int y = robot.getYPosition();
+        int x = robot.xPosition;
+        int y = robot.yPosition;
         Radioactive.updateEnergy(this);
 
         try{
@@ -263,20 +263,20 @@ public class Map {
             map[y][x + 1] = new Empty(x + 1, y);
             robot.energy--;
         }   catch(IndexOutOfRangeException) {
-            robot.setXPosition(x + 1);
+            robot.xPosition++;
         }
     }
 
     //Updates the map when the robot collects an Item:
     private void Robot_Collected(object? sender, EventArgs e){
-        int x = robot.getXPosition();
-        int y = robot.getYPosition();
+        int x = robot.xPosition;
+        int y = robot.yPosition;
 
         try{
             if(map[y][x + 1] is IEnergizable && map[y][x + 1] is not Radioactive){
                 (map[y][x + 1] as IEnergizable)?.updateEnergy();
             }
-            if(map[y][x + 1].getCollectable()){
+            if(map[y][x + 1].collectable){
                 robot.bag.Add(map[y][x + 1]);
                 map[y][x + 1] = new Empty(x + 1, y);
             }
@@ -286,7 +286,7 @@ public class Map {
             if(map[y][x - 1] is IEnergizable && map[y][x - 1] is not Radioactive){
                 (map[y][x - 1] as IEnergizable)?.updateEnergy();
             }
-            if(map[y][x - 1].getCollectable()){
+            if(map[y][x - 1].collectable){
                 robot.bag.Add(map[y][x - 1]);
                 map[y][x - 1] = new Empty(x - 1, y);
             }
@@ -296,7 +296,7 @@ public class Map {
             if(map[y + 1][x] is IEnergizable && map[y + 1][x] is not Radioactive){
                 (map[y + 1][x] as IEnergizable)?.updateEnergy();
             }
-            if(map[y + 1][x].getCollectable()){
+            if(map[y + 1][x].collectable){
                 robot.bag.Add(map[y + 1][x]);
                 map[y + 1][x] = new Empty(x, y + 1);
             }
@@ -306,7 +306,7 @@ public class Map {
             if(map[y - 1][x] is IEnergizable && map[y - 1][x] is not Radioactive){
                 (map[y - 1][x] as IEnergizable)?.updateEnergy();
             }
-            if(map[y - 1][x].getCollectable()){
+            if(map[y - 1][x].collectable){
                 robot.bag.Add(map[y - 1][x]);
                 map[y - 1][x] = new Empty(x, y - 1);
             }
